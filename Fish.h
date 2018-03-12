@@ -31,13 +31,13 @@ class Fish : public Object {
 		------------------------------------------------------------*/
 		
 		int get_id();
-		long get_price();
-		long get_coin_value();
+		int get_price();
+		int get_coin_value();
 		int get_hunger();
 		int get_speed();
 		
-		void set_price(long);
-		void set_coin_value(long);
+		void set_price(int);
+		void set_coin_value(int);
 		void set_hunger(int);
 		void set_speed(int);
 		
