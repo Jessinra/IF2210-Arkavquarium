@@ -65,8 +65,8 @@ class Fish : public Object {
   	protected:
   		
 	  	int fish_id;
-	  	long fish_price;
-	    long coin_value;
+	  	int fish_price;
+	    int coin_value;
 	    int hunger;
 	    int max_hunger;
 	    int speed;
