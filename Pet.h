@@ -5,15 +5,35 @@
 using namespace std;
 
 class Pet : public Object {
-  public:
-    Pet();
-    ~Pet();
-
-    void draw();
-    void remove();
-    void move();
-
-    virtual void take_coin() = 0;
+  	public:
+  		
+  		/*------------------------------------------------------------
+			 				Constructor & Destructor 	
+		------------------------------------------------------------*/
+		
+	    Pet();
+	    ~Pet();
+	    
+	    /*------------------------------------------------------------
+									Getter  
+		------------------------------------------------------------*/
+		
+		int get_id();
+		
+		/*------------------------------------------------------------
+									Method 
+		------------------------------------------------------------*/	
+		
+	    void draw();
+	    void remove();
+	    virtual void move();
+		
+	
+	    
+	private:
+		
+		int pet_id;
+		static int pet_count;
 };
 
 #endif

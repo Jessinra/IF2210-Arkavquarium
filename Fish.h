@@ -7,29 +7,75 @@
 using namespace std;
 
 class Fish : public Object {
-  public:
-  	//ctor
-    Fish();
-    //dtor
-    ~Fish();
-    //cctor
-    Fish(const Fish &ikan);
-    //operator assignment
-    Fish& operator=(const Fish& ikan);
 
-    void draw();
-    void remove();
+	public:
+  	
+		/*------------------------------------------------------------
+							Constructor & Destructor 	
+		------------------------------------------------------------*/
+	  	
+	  	//ctor
+	    Fish();
+	    
+		//dtor
+	    ~Fish();
+	    
+		//cctor
+	    Fish(const Fish&);
+	    
+		//operator assignment 
+	    Fish& operator=(const Fish& );
+	    
+		/*------------------------------------------------------------
+								Getter	Setter
+		------------------------------------------------------------*/
+		
+		int get_id();
+		long get_price();
+		long get_coin_value();
+		int get_hunger();
+		int get_speed();
+		
+		void set_price(long);
+		void set_coin_value(long);
+		void set_hunger(int);
+		void set_speed(int);
+		
+		/*------------------------------------------------------------
+									Method 
+		------------------------------------------------------------*/
+		
+		// draw on screen (GUI)
+	    virtual void draw();
+	    
+	    void remove();
+	    
+	    // merubah posisi x y ikan, mendekati makanan / bergerak bebas
+	    virtual void move() = 0;
+	    
+	    // membuat object coin dan memanggil aquarium.add_coin(coin&)
+	    virtual void produce_coin() = 0;
+	    
+	    // menambah hunger dan memanggil aquarium.remove_food(food&)
+	    virtual void eat() = 0;
+	    
+	    // mengecek apakah hunger = max hunger
+	    virtual bool isFull() = 0;
 
-    virtual void move() = 0;
-    virtual void produce_coin() = 0;
-    virtual void eat() = 0;
-    virtual bool isFull() = 0;
-
-  protected:
-    long price;
-    long coin_produced;
-    int hunger;
-    int speed;
+  	protected:
+  		
+	  	int fish_id;
+	  	long fish_price;
+	    long coin_value;
+	    int hunger;
+	    int max_hunger;
+	    int speed;
+	    
+	    static int fish_count; // jumlah ikan (mungkin perlu)
+    
+  	
+  	
+    
 };
 
 #endif

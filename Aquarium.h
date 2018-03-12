@@ -2,33 +2,55 @@
 #define AQUARIUM_H
 
 #include "wtypes.h" // for GetDesktopResolution()
+
 #include "Object.h"
+#include "Fish.h"
+#include "Pet.h"
+#include "Food.h"
+#include "Coin.h"
+#include "List.h"
+
 using namespace std;
 
 class Aquarium : public Object{
 	
 	public:
 		
-		// Constructor & Destructor aquarium
+		/*------------------------------------------------------------
+							Constructor & Destructor 	
+		------------------------------------------------------------*/
+		
 		Aquarium();
 		~Aquarium();
 		
 		/*------------------------------------------------------------
-							Method from abstract class	
+									Getter	
 		------------------------------------------------------------*/
+		
+		List<Fish>& get_list_fish();
+		List<Pet>& get_list_pet();
+		List<Food>& get_list_food();
+		List<Coin>& get_list_coin();
+		
+		// get reference to object at aquarium matrix
+		Object& get_aquarium(int, int);
+		
+		// set aquarium tile with object
+		void set_aquarium(int, int, Object& );
+		
+		/*------------------------------------------------------------
+							Class Method	
+		------------------------------------------------------------*/
+		
 		// draw on screen (GUI)
 		void draw();	
 		
 		// Method to remove object (calling destructor)
 	 	void remove();	
 		 
-		// Method to move object 
+		// Method to move object (???)
 	 	void move();		
-		
-		/*------------------------------------------------------------
-							Class Method	
-		------------------------------------------------------------*/
-		
+	 	
 		// Method to add fish to tank 
 		// called by fish.create() 
 		void add_fish(Fish& fish);
@@ -62,11 +84,8 @@ class Aquarium : public Object{
 		void remove_coin(List<Coin>& list_of_coin, int coin_id);
 		
 		
-		
-		
-		
-		
 	private:
+		
 		int screen_width, screen_height;
 		
 		// Matrix of water (?)
@@ -76,7 +95,7 @@ class Aquarium : public Object{
 		List<Fish> list_fish;
 		List<Pet> list_pet;
 		List<Food> list_food;
-		List<Coin> List_coin;
+		List<Coin> list_coin;
 			
 		// Method to get desktop resolution for windows
 		void GetDesktopResolution(int& screen_width, int& screen_height);
