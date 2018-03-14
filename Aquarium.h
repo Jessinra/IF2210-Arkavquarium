@@ -57,7 +57,7 @@ class Aquarium : public Object{
 		
 		// Method to remove fish from list of fish 
 		// called by fish.die() 
-		void remove_fish(List<Fish>& list_of_fish, int fish_id);
+		void remove_fish(LinkedList<Fish>& list_of_fish, int fish_id);
 		
 		// Method to add pet to tank
 		// called by pet.create()
@@ -65,7 +65,7 @@ class Aquarium : public Object{
 		
 		// Method to remove pet from list of pet
 		// called by pet.die() // just in case needed it
-		void remove_pet(List<Pet>& list_of_pet, int pet_id);
+		void remove_pet(LinkedList<Pet>& list_of_pet, int pet_id);
 		
 		// Method to add food to tank
 		// called by food.create()
@@ -73,7 +73,7 @@ class Aquarium : public Object{
 		
 		// Method to remove food from tank
 		// called by food.consumed(), food.touch_bottom() 
-		void remove_food(List<Food>& list_of_food, int food_id);
+		void remove_food(LinkedList<Food>& list_of_food, int food_id);
 		
 		// Method called to add coin to tank 
 		// called by fish.drop_coin()
@@ -81,7 +81,7 @@ class Aquarium : public Object{
 		
 		// Method to remove coin from list of coin
 		// called by pet.collect_coin(), coin.touch_bottom()
-		void remove_coin(List<Coin>& list_of_coin, int coin_id);
+		void remove_coin(LinkedList<Coin>& list_of_coin, int coin_id);
 		
 		
 	private:
