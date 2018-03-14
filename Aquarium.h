@@ -8,7 +8,7 @@
 #include "Pet.h"
 #include "Food.h"
 #include "Coin.h"
-#include "List.h"
+#include "LinkedList.h"
 
 using namespace std;
 
@@ -27,10 +27,10 @@ class Aquarium : public Object{
 									Getter	
 		------------------------------------------------------------*/
 		
-		List<Fish>& get_list_fish();
-		List<Pet>& get_list_pet();
-		List<Food>& get_list_food();
-		List<Coin>& get_list_coin();
+		LinkedList<Fish>& get_list_fish();
+		LinkedList<Pet>& get_list_pet();
+		LinkedList<Food>& get_list_food();
+		LinkedList<Coin>& get_list_coin();
 		
 		// get reference to object at aquarium matrix
 		Object& get_aquarium(int, int);
@@ -92,10 +92,10 @@ class Aquarium : public Object{
 		Object ** aquarium;	
 		
 		// List of objects in aquarium	
-		List<Fish> list_fish;
-		List<Pet> list_pet;
-		List<Food> list_food;
-		List<Coin> list_coin;
+		LinkedList<Fish> list_fish;
+		LinkedList<Pet> list_pet;
+		LinkedList<Food> list_food;
+		LinkedList<Coin> list_coin;
 			
 		// Method to get desktop resolution for windows
 		void GetDesktopResolution(int& screen_width, int& screen_height);
