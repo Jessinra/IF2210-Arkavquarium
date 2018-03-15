@@ -8,7 +8,7 @@
 #include "Pet.h"
 #include "Food.h"
 #include "Coin.h"
-#include "List.h"
+#include "LinkedList.h"
 
 using namespace std;
 
@@ -27,10 +27,10 @@ class Aquarium : public Object{
 									Getter	
 		------------------------------------------------------------*/
 		
-		List<Fish>& get_list_fish();
-		List<Pet>& get_list_pet();
-		List<Food>& get_list_food();
-		List<Coin>& get_list_coin();
+		LinkedList<Fish>& get_list_fish();
+		LinkedList<Pet>& get_list_pet();
+		LinkedList<Food>& get_list_food();
+		LinkedList<Coin>& get_list_coin();
 		
 		// get reference to object at aquarium matrix
 		Object& get_aquarium(int, int);
@@ -57,7 +57,7 @@ class Aquarium : public Object{
 		
 		// Method to remove fish from list of fish 
 		// called by fish.die() 
-		void remove_fish(List<Fish>& list_of_fish, int fish_id);
+		void remove_fish(LinkedList<Fish>& list_of_fish, int fish_id);
 		
 		// Method to add pet to tank
 		// called by pet.create()
@@ -65,7 +65,7 @@ class Aquarium : public Object{
 		
 		// Method to remove pet from list of pet
 		// called by pet.die() // just in case needed it
-		void remove_pet(List<Pet>& list_of_pet, int pet_id);
+		void remove_pet(LinkedList<Pet>& list_of_pet, int pet_id);
 		
 		// Method to add food to tank
 		// called by food.create()
@@ -73,7 +73,7 @@ class Aquarium : public Object{
 		
 		// Method to remove food from tank
 		// called by food.consumed(), food.touch_bottom() 
-		void remove_food(List<Food>& list_of_food, int food_id);
+		void remove_food(LinkedList<Food>& list_of_food, int food_id);
 		
 		// Method called to add coin to tank 
 		// called by fish.drop_coin()
@@ -81,7 +81,7 @@ class Aquarium : public Object{
 		
 		// Method to remove coin from list of coin
 		// called by pet.collect_coin(), coin.touch_bottom()
-		void remove_coin(List<Coin>& list_of_coin, int coin_id);
+		void remove_coin(LinkedList<Coin>& list_of_coin, int coin_id);
 		
 		
 	private:
@@ -92,10 +92,10 @@ class Aquarium : public Object{
 		Object ** aquarium;	
 		
 		// List of objects in aquarium	
-		List<Fish> list_fish;
-		List<Pet> list_pet;
-		List<Food> list_food;
-		List<Coin> list_coin;
+		LinkedList<Fish> list_fish;
+		LinkedList<Pet> list_pet;
+		LinkedList<Food> list_food;
+		LinkedList<Coin> list_coin;
 			
 		// Method to get desktop resolution for windows
 		void GetDesktopResolution(int& screen_width, int& screen_height);
