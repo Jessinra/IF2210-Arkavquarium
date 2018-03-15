@@ -5,21 +5,53 @@
 using namespace std;
 
 class Guppy : public Fish {
-  public:
-    Guppy();
-    ~Guppy();
-    Guppy(const Guppy &g);
-    Guppy& operator=(const Guppy& g);
-
-
-    void move(); //approach food
-    void produce_coin(); ////periodically
-    void eat(); //eat food
-    void grow();
-    bool isFull();
-
-  private:
-    int level_grow;
+	
+	public:
+		
+	  	/*------------------------------------------------------------
+						Constructor & Destructor 	
+		------------------------------------------------------------*/
+		
+	    Guppy();
+	    ~Guppy();
+	    Guppy(const Guppy& );
+	    Guppy& operator=(const Guppy& );
+	    
+		/*------------------------------------------------------------
+									Getter  
+		------------------------------------------------------------*/
+		
+		int get_level();
+		
+		void set_level(int);
+		
+		/*------------------------------------------------------------
+								Method  	
+		------------------------------------------------------------*/
+		
+		//approach food
+	    void move();
+	    
+	    // draw on screen (GUI)
+	    void draw();
+	    
+	    //periodically drop coin
+	    void produce_coin(); 
+	    
+	    //eat food
+		void eat(); 
+		
+		// grow to another lv
+	    void grow();
+	    
+	    // check kondisi hunger
+	    bool isFull();
+	
+	
+	private:
+		
+	    int level_grow;
+	    int max_level;
 };
 
 #endif
