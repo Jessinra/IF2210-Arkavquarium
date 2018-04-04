@@ -49,7 +49,7 @@ class Aquarium : public Object{
 	 	void remove();	
 		 
 		// Method to move object (???)
-	 	void move();		
+	 	void move();
 	 	
 		// Method to add fish to tank 
 		// called by fish.create() 
