@@ -3,6 +3,7 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
+#include "Lib/oop.hpp"
 
 using namespace std;
 

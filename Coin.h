@@ -3,7 +3,6 @@
 
 #include "Object.h"
 #include "Moveable.h"
-#include "Lib/oop.hpp"
 
 using namespace std;
 

@@ -18,7 +18,7 @@ class Moveable {
 		
 		void set_x(int x);
 		void set_y(int y);
-		void set_dir();
+		void set_dir(string dir);
 
 		// handle object movement	
 		virtual void move() = 0;
