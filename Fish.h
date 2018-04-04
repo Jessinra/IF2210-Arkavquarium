@@ -4,9 +4,11 @@
 #include "Object.h"
 #include "Food.h"
 #include "Coin.h"
+#include "Moveable.h"
+
 using namespace std;
 
-class Fish : public Object {
+class Fish : public Object, Moveable {
 
 	public:
   	

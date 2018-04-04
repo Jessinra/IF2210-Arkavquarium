@@ -2,18 +2,21 @@
 #define COIN_H
 
 #include "Object.h"
+#include "Moveable.h"
+#include "Lib/oop.hpp"
+
 using namespace std;
 
-class Coin : public Object {
+class Coin : public Object, Moveable {
 	
 	public:
-		
+
+		static int coin_amount;
 		/*------------------------------------------------------------
 			 				Constructor & Destructor 	
 		------------------------------------------------------------*/
 		
-		Coin();
-		~Coin();
+		Coin(int x, int y, int value);
 		
 		/*------------------------------------------------------------
 							 	Getter	Setter
@@ -21,8 +24,6 @@ class Coin : public Object {
 		
 		int get_id();
 		int get_value();
-		
-		void set_value();
 		
 		/*------------------------------------------------------------
 									Method  
@@ -33,9 +34,9 @@ class Coin : public Object {
 		void move();
 	
 	private:
-		
 		int coin_id;
 		int coin_value;
+
 };
 
 #endif

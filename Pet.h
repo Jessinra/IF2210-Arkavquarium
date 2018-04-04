@@ -2,9 +2,10 @@
 #define PET_H
 
 #include "Object.h"
+#include "Moveable.h"
 using namespace std;
 
-class Pet : public Object {
+class Pet : public Object, Moveable {
   	public:
   		
   		/*------------------------------------------------------------
