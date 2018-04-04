@@ -1,12 +1,10 @@
-
-
 #ifndef MOVEABLE_H
 #define MOVEABLE_H
 
 #include <string>
 using namespace std;
 
-class moveable {
+class Moveable {
 
 	public:
 
@@ -18,9 +16,9 @@ class moveable {
 		int get_y();
 		string get_dir();
 		
-		void set_x();
-		void set_y();
-		void set_dir();
+		void set_x(int x);
+		void set_y(int y);
+		void set_dir(string dir);
 
 		// handle object movement	
 		virtual void move() = 0;

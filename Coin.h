@@ -3,18 +3,19 @@
 
 #include "Object.h"
 #include "Moveable.h"
+
 using namespace std;
 
 class Coin : public Object, Moveable {
 	
 	public:
-		
+
+		static int coin_amount;
 		/*------------------------------------------------------------
 			 				Constructor & Destructor 	
 		------------------------------------------------------------*/
 		
-		Coin();
-		~Coin();
+		Coin(int x, int y, int value);
 		
 		/*------------------------------------------------------------
 							 	Getter	Setter
@@ -22,8 +23,6 @@ class Coin : public Object, Moveable {
 		
 		int get_id();
 		int get_value();
-		
-		void set_value();
 		
 		/*------------------------------------------------------------
 									Method  
@@ -34,9 +33,9 @@ class Coin : public Object, Moveable {
 		void move();
 	
 	private:
-		
 		int coin_id;
 		int coin_value;
+
 };
 
 #endif
