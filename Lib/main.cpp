@@ -3,7 +3,7 @@
 #include <math.h>
 #include <sstream>
 
-const double speed = 50; // pixels per second
+const double speed = 150; // pixels per second
 
 int main( int argc, char* args[] )
 {
