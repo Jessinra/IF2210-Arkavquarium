@@ -2,9 +2,10 @@
 #define FOOD_H
 
 #include "Object.h"
+#include "Moveable.h"
 using namespace std;
 
-class Food : public Object{
+class Food : public Object, Moveable{
 	
 	public:
 	

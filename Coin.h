@@ -2,9 +2,10 @@
 #define COIN_H
 
 #include "Object.h"
+#include "Moveable.h"
 using namespace std;
 
-class Coin : public Object {
+class Coin : public Object, Moveable {
 	
 	public:
 		
