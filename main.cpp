@@ -112,7 +112,8 @@ int main(int argc, char* args[]) {
                 if (aquarium.get_list_guppy().get(i).get_hunger() == 0) {
                     Guppy guppy_rem = aquarium.get_list_guppy().get(i);
                     aquarium.remove_guppy(guppy_rem);
-                }
+                    i--;
+                } else {
                 // move fish
                 
                 // cek untuk drop coin
@@ -122,7 +123,7 @@ int main(int argc, char* args[]) {
                 // ngurangin hunger
                 
                 // tampilin di layar
-
+                }
             }
         // iterasi list piranha
             for (int i = 1; i <= aquarium.get_list_piranha().getNBelmt(); i++) {
@@ -130,21 +131,36 @@ int main(int argc, char* args[]) {
                 if (aquarium.get_list_piranha().get(i).get_hunger() == 0) {
                     Piranha piranha_rem = aquarium.get_list_piranha().get(i);
                     aquarium.remove_piranha(piranha_rem);
-                }
+                    i--;
+                } else {
                 // move fish
                 
                 // ngurangin hunger
                 
                 // tampilin di layar
-
+                }
             }
-        // iterasi list coin (tampilin di layar)
-            // move coin
-        // iterasi list makanan (tampilin di layar)
-            // move makanan
-        // tampilin siput
-        // move siput
+        // iterasi list coin
+            for (int i = 1; i <= aquarium.get_list_coin().getNBelmt(); i++) {
+                // move coin
+                aquarium.get_list_coin().get(i).move((int)sec_since_last);
 
+                // tampilin di layar
+            }
+                
+        // iterasi list makanan
+            for (int i = 1; i <= aquarium.get_list_food().getNBelmt(); i++) {
+                // move food
+                // aquarium.get_list_food().get(i).move((int)sec_since_last);
+
+                // tampilin di layar
+            }
+        // iterasi list siput
+            for (int i = 1; i <= aquarium.get_list_siput().getNBelmt(); i++) {
+                // move siput
+
+                // tampilin di layar
+            }
         // tampilin uang
         // tampilin telur
         // tampilin button yang dapat digunakan

@@ -14,7 +14,8 @@ class Coin : public Object, Moveable {
 		/*------------------------------------------------------------
 			 				Constructor & Destructor 	
 		------------------------------------------------------------*/
-		
+		Coin();
+
 		Coin(int x, int y, int value);
 		
 		/*------------------------------------------------------------
@@ -30,7 +31,7 @@ class Coin : public Object, Moveable {
 		
 		void draw();
 		void remove();
-		void move();
+		void move(int);
 	
 	private:
 		int coin_id;
