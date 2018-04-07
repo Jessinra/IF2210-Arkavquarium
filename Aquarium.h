@@ -1,20 +1,25 @@
 #ifndef AQUARIUM_H
 #define AQUARIUM_H
 
-#include "wtypes.h" // for GetDesktopResolution()
-
 #include "Object.h"
-#include "Fish.h"
+#include "Guppy.h"
+#include "Piranha.h"
 #include "Pet.h"
+#include "Siput.h"
 #include "Food.h"
 #include "Coin.h"
 #include "LinkedList.h"
+
+#include "Lib/oop.hpp"
 
 using namespace std;
 
 class Aquarium : public Object{
 	
 	public:
+		
+		static int money;
+		static int egg;
 		
 		/*------------------------------------------------------------
 							Constructor & Destructor 	
@@ -27,8 +32,9 @@ class Aquarium : public Object{
 									Getter	
 		------------------------------------------------------------*/
 		
-		LinkedList<Fish>& get_list_fish();
-		LinkedList<Pet>& get_list_pet();
+		LinkedList<Guppy>& get_list_guppy();
+		LinkedList<Piranha>& get_list_piranha();
+		LinkedList<Siput>& get_list_siput();
 		LinkedList<Food>& get_list_food();
 		LinkedList<Coin>& get_list_coin();
 		
@@ -46,26 +52,31 @@ class Aquarium : public Object{
 		void draw();	
 		
 		// Method to remove object (calling destructor)
-	 	void remove();	
-		 
-		// Method to move object (???)
-	 	void move();
+	 	void remove();
 	 	
-		// Method to add fish to tank 
-		// called by fish.create() 
-		void add_fish(Fish& fish);
+		// Method to add guppy to tank 
+		// called by guppy.create() 
+		void add_guppy(Guppy& guppy);
 		
-		// Method to remove fish from list of fish 
-		// called by fish.die() 
-		void remove_fish(LinkedList<Fish>& list_of_fish, int fish_id);
+		// Method to remove guppy from list of piranha
+		// called by guppy.die() 
+		void remove_guppy(Guppy& guppy);
+		
+		// Method to add piranha to tank 
+		// called by piranha.create() 
+		void add_piranha(Piranha& piranha);
+		
+		// Method to remove piranha from list of piranha
+		// called by piranha.die() 
+		void remove_piranha(Piranha& piranha);
 		
 		// Method to add pet to tank
 		// called by pet.create()
-		void add_pet(Pet& pet);
+		void add_siput(Siput& siput);
 		
 		// Method to remove pet from list of pet
 		// called by pet.die() // just in case needed it
-		void remove_pet(LinkedList<Pet>& list_of_pet, int pet_id);
+		void remove_siput(Siput& siput);
 		
 		// Method to add food to tank
 		// called by food.create()
@@ -73,32 +84,31 @@ class Aquarium : public Object{
 		
 		// Method to remove food from tank
 		// called by food.consumed(), food.touch_bottom() 
-		void remove_food(LinkedList<Food>& list_of_food, int food_id);
+		void remove_food(Food& food);
 		
 		// Method called to add coin to tank 
-		// called by fish.drop_coin()
+		// called by guppy.drop_coin()
 		void add_coin(Coin& coin);
 		
 		// Method to remove coin from list of coin
 		// called by pet.collect_coin(), coin.touch_bottom()
-		void remove_coin(LinkedList<Coin>& list_of_coin, int coin_id);
+		void remove_coin(Coin& coin);
+
+
+		void main_loop();
+
+		void generate_coins();
 		
 		
 	private:
-		
-		int screen_width, screen_height;
-		
-		// Matrix of water (?)
-		Object ** aquarium;	
-		
+
 		// List of objects in aquarium	
-		LinkedList<Fish> list_fish;
-		LinkedList<Pet> list_pet;
+		LinkedList<Guppy> list_guppy;
+		LinkedList<Piranha> list_piranha;
+		LinkedList<Siput> list_siput;
 		LinkedList<Food> list_food;
 		LinkedList<Coin> list_coin;
 			
-		// Method to get desktop resolution for windows
-		void GetDesktopResolution(int& screen_width, int& screen_height);
 };
 
 
