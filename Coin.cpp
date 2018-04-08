@@ -41,7 +41,7 @@ void Coin::draw() {
     draw_image("coin.png", get_x(), get_y());
 }
 
-void Coin::move(int sec_since_last) {
+void Coin::move(double sec_since_last) {
     if (get_y() <= SCREEN_HEIGHT-50) {
         set_y(get_y()-50*sec_since_last);
     }

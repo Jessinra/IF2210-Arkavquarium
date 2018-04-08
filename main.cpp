@@ -143,7 +143,7 @@ int main(int argc, char* args[]) {
         // iterasi list coin
             for (int i = 1; i <= aquarium.get_list_coin().getNBelmt(); i++) {
                 // move coin
-                aquarium.get_list_coin().get(i).move((int)sec_since_last);
+                aquarium.get_list_coin().get(i).move(sec_since_last);
 
                 // tampilin di layar
             }

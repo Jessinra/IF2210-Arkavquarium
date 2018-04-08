@@ -12,12 +12,12 @@ class Moveable {
 							 	Getter	Setter
 		------------------------------------------------------------*/
 		
-		int get_x();
-		int get_y();
+		double get_x();
+		double get_y();
 		string get_dir();
 		
-		void set_x(int x);
-		void set_y(int y);
+		void set_x(double x);
+		void set_y(double y);
 		void set_dir(string dir);
 
 		// handle object movement	
@@ -25,8 +25,8 @@ class Moveable {
 
 	private:
 
-		int position_x;
-	  	int position_y;
+		double position_x;
+	  	double position_y;
 	  	string direction;
 
 
