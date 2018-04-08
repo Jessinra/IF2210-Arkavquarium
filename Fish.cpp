@@ -3,6 +3,7 @@
 
 using namespace std;
 
+int Fish::fish_count = 0;
 		/*------------------------------------------------------------
 							Constructor & Destructor 	
 		------------------------------------------------------------*/
@@ -11,8 +12,8 @@ using namespace std;
 		double y = rand() % 480;
 		set_x(x);
 		set_y(y);
-		fish_count++;
-		fish_id = fish_count;
+		Fish::fish_count++;
+		fish_id = Fish::fish_count;
 		fish_price = price;
 		coin_value = cvalue;
 		hungry = false;
@@ -33,7 +34,7 @@ using namespace std;
 		return coin_value;
 	}
 
-	void set_coin_value(int cvalue) {
+	void Fish::set_coin_value(int cvalue) {
 		coin_value = cvalue;
 	}
 
@@ -53,8 +54,8 @@ using namespace std;
 		hungry = status;
 	}
 
-	const int get_max_hunger() {
-		return get_max_hunger;
+	const int Fish::get_max_hunger() {
+		return max_hunger;
 	}
 
 		/*------------------------------------------------------------
@@ -77,7 +78,7 @@ using namespace std;
 		}
 	}
 
-	bool Fish::isDie() {
+	bool Fish::isDead() {
 		if (get_hunger() == 0) {
 			return true;
 		}
