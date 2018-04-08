@@ -8,6 +8,8 @@
 
 using namespace std;
 
+const double hunger_decrease_const = 0.005;
+
 class Fish : public Object, Moveable {
 
 	public:
@@ -35,12 +37,12 @@ class Fish : public Object, Moveable {
 		int get_id();
 		int get_price();
 		int get_coin_value();
-		int get_hunger();
+		double get_hunger();
 		int get_speed();
 		
 		void set_price(int);
 		void set_coin_value(int);
-		void set_hunger(int);
+		void set_hunger(double);
 		void set_speed(int);
 		
 		/*------------------------------------------------------------
@@ -69,7 +71,7 @@ class Fish : public Object, Moveable {
 	  	int fish_id;
 	  	int fish_price;
 	    int coin_value;
-	    int hunger;
+	    double hunger;
 	    int max_hunger;
 	    int speed;
 	    

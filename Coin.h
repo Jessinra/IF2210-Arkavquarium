@@ -31,7 +31,7 @@ class Coin : public Object, Moveable {
 		
 		void draw();
 		void remove();
-		void move(int);
+		void move(double);
 	
 	private:
 		int coin_id;

@@ -31,7 +31,7 @@ class Food : public Object, Moveable{
 		
 	    void draw();
 	    void remove();
-	    void move();
+	    void move(double);
 
   	private:
   		

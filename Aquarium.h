@@ -12,6 +12,13 @@
 
 #include "Lib/oop.hpp"
 
+
+const int guppy_price = 50;
+const int piranha_price = 250;
+const int food_price = 2;
+const int egg_price = 4000;
+const int siput_price = 1250;
+
 using namespace std;
 
 class Aquarium : public Object{
@@ -38,14 +45,8 @@ class Aquarium : public Object{
 		LinkedList<Food>& get_list_food();
 		LinkedList<Coin>& get_list_coin();
 		
-		// get reference to object at aquarium matrix
-		Object& get_aquarium(int, int);
-		
-		// set aquarium tile with object
-		void set_aquarium(int, int, Object& );
-		
 		/*------------------------------------------------------------
-							Class Method	
+								Class Method	
 		------------------------------------------------------------*/
 		
 		// draw on screen (GUI)
@@ -94,11 +95,25 @@ class Aquarium : public Object{
 		// called by pet.collect_coin(), coin.touch_bottom()
 		void remove_coin(Coin& coin);
 
+		// Method to create new guppy
+		// method to run by main
+		void buy_guppy();
 
-		void main_loop();
+		// Method to create new piranha
+		// method to run by main
+		void buy_piranha();
 
-		void generate_coins();
-		
+		// Method to add food to tank
+		// method to run by main
+		void buy_food();
+
+		// Method to buy egg
+		// method to run by main
+		void buy_egg();
+
+		// Method to create siput
+		// method to run by main
+		void buy_snail();
 		
 	private:
 
