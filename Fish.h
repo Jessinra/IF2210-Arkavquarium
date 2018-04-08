@@ -8,8 +8,6 @@
 
 using namespace std;
 
-const double hunger_decrease_const = 0.005;
-
 class Fish : public Object, Moveable {
 
 	public:
@@ -19,40 +17,47 @@ class Fish : public Object, Moveable {
 		------------------------------------------------------------*/
 	  	
 	  	//ctor
-	    Fish();
-	    
-		//dtor
-	    ~Fish();
-	    
-		//cctor
-	    Fish(const Fish&);
-	    
-		//operator assignment 
-	    Fish& operator=(const Fish& );
+	    Fish(int price, int cvalue);
 	    
 		/*------------------------------------------------------------
 								Getter	Setter
 		------------------------------------------------------------*/
 		
-		int get_id();
-		int get_price();
-		int get_coin_value();
-		double get_hunger();
-		int get_speed();
-		
-		void set_price(int);
-		void set_coin_value(int);
-		void set_hunger(double);
-		void set_speed(int);
+	int Fish::get_id();
+	
+	int Fish::get_price();
+	
+	int Fish::get_coin_value();
+
+	void set_coin_value(int cvalue);
+
+	double Fish::get_hunger();
+	
+	int Fish::get_speed();
+
+	bool Fish::get_hungry();
+
+	void Fish::set_hungry(bool status);
+
+	const int get_max_hunger();
 		
 		/*------------------------------------------------------------
 									Method 
 		------------------------------------------------------------*/
+		//habis makan, hunger full lagi
+		void Fish::fullHunger();
 		
+		//decrease hunger 1 per timeframe
+		void Fish::makeHungry();
+
+		//return true kalau lapar
+		void Fish::isHungry();
+
+		//return true if ikan mati
+		bool Fish::isDie();
+
 		// draw on screen (GUI)
 	    virtual void draw();
-	    
-	    void remove();
 	    
 	    // merubah posisi x y ikan, mendekati makanan / bergerak bebas
 	    virtual void move() = 0;
@@ -62,21 +67,19 @@ class Fish : public Object, Moveable {
 	    
 	    // menambah hunger dan memanggil aquarium.remove_food(food&)
 	    virtual void eat() = 0;
-	    
-	    // mengecek apakah hunger = max hunger
-	    virtual bool isFull() = 0;
 
   	protected:
   		
-	  	int fish_id;
+  		int fish_id;
 	  	int fish_price;
 	    int coin_value;
 	    double hunger;
-	    int max_hunger;
 	    int speed;
-	    
-	    static int fish_count; // jumlah ikan (mungkin perlu)
-    
+	    bool hungry;
+
+	    static int fish_count; // jumlah ikan
+
+	    const int max_hunger = 20;
   	
   	
     

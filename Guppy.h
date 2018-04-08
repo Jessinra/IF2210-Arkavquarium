@@ -2,6 +2,9 @@
 #define GUPPY_H
 
 #include "Fish.h"
+#include "Food.h"
+#include "Aquarium.h"
+#include "LinkedList.h"
 using namespace std;
 
 class Guppy : public Fish {
@@ -13,9 +16,6 @@ class Guppy : public Fish {
 		------------------------------------------------------------*/
 		
 	    Guppy();
-	    ~Guppy();
-	    Guppy(const Guppy& );
-	    Guppy& operator=(const Guppy& );
 	    
 		/*------------------------------------------------------------
 									Getter  
@@ -25,33 +25,34 @@ class Guppy : public Fish {
 		
 		void set_level(int);
 		
+		int get_number_eat();
+
+		int set_number_eat(int);
+
+		int get_timer();
+
+		void set_timer();
+
+		const int get_max_level();
 		/*------------------------------------------------------------
 								Method  	
 		------------------------------------------------------------*/
 		
-		//approach food
-	    void move();
-	    
-	    // draw on screen (GUI)
 	    void draw();
-	    
-	    //periodically drop coin
-	    void produce_coin(); 
-	    
-	    //eat food
-		void eat(); 
-		
-		// grow to another lv
+	    bool produce_coin();
+	    int findFood(LinkedList<Food> F);
+	    void move(double sec_since_last,LinkedList<Food> F);
+	    double euclidean(Food m);
+	    bool inRadius(LinkedList<Food> F);
+	    void eat(LinkedList<Food>& F);
 	    void grow();
-	    
-	    // check kondisi hunger
-	    bool isFull();
 	
 	
 	private:
-		
+		int number_eat;
 	    int level_grow;
-	    int max_level;
+	    double timer; //guppy mengeluarkan uang setelah bbrp detik
+	    const int max_level=3;
 };
 
 #endif
