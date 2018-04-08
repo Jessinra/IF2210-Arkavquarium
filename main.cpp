@@ -203,22 +203,33 @@ int main(int argc, char* args[]) {
             // iterasi list coin
             for (int i = 1; i <= aquarium.get_list_coin().getNBelmt(); i++) {
 
+                Coin current_coin = aquarium.get_list_coin().get(i);
+
                 // move coin
-                aquarium.get_list_coin().get(i).move(sec_since_last);
+                current_coin.move(sec_since_last);
 
             }
                 
             // iterasi list makanan
             for (int i = 1; i <= aquarium.get_list_food().getNBelmt(); i++) {
 
+                Food current_food = aquarium.get_list_food().get(i);
+
                 // move food
+                current_food.move(sec_since_last);
 
             }
 
             // iterasi list siput
             for (int i = 1; i <= aquarium.get_list_siput().getNBelmt(); i++) {
 
+                Siput current_siput = aquarium.get_list_siput().get(i);
+
                 // move siput
+                current_siput.move(sec_since_last);
+
+                // get coin
+                // current_siput.take_coin();
 
             }
 
