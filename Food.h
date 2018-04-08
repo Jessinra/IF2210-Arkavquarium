@@ -6,40 +6,41 @@
 using namespace std;
 
 class Food : public Object, Moveable{
-	
+
 	public:
-	
+
 		/*------------------------------------------------------------
-			 				Constructor & Destructor 	
+			 				Constructor & Destructor
 		------------------------------------------------------------*/
-	    
+
 		Food();
-	    ~Food();
-	    
+    ~Food();
+
 	    /*------------------------------------------------------------
 							 	Getter	Setter
 		------------------------------------------------------------*/
-		
+
 		int get_id();
+		int get_type();
 		int get_value();
-		
-		void set_value();
-		
+
+		void set_value(int x);
+
 		/*------------------------------------------------------------
-									Method 	
+									Method
 		------------------------------------------------------------*/
-		
+
 	    void draw();
 	    void remove();
-	    void move(double);
+	    void move();
 
   	private:
-  		
+
   		int food_id;
     	int food_type;
     	int food_value;
-	
-	
+
+
 };
 
 

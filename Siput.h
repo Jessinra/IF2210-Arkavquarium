@@ -6,31 +6,33 @@ using namespace std;
 
 class Siput : public Pet {
   	public:
-  		
+
    		/*------------------------------------------------------------
-			 				Constructor & Destructor 	
-		------------------------------------------------------------*/ 		
-		
+			 				Constructor & Destructor
+		------------------------------------------------------------*/
+
     	Siput();
     	~Siput();
-    	
+
     	/*------------------------------------------------------------
 								Getter  Setter
 		------------------------------------------------------------*/
-		
+
 		int get_distance();
-		
-		void set_distance();
-		
+
+		void set_distance(int x);
+
 		/*------------------------------------------------------------
-									Method 
-		------------------------------------------------------------*/	
-	
-		void move();
-   		void take_coin();
+									Method
+		------------------------------------------------------------*/
+
+    void draw();
+    void move();
+    void find_coin();
+   	void take_coin(LinkedList<Coin>& C);
 
   	private:
-  		
+
     	int distance_to_coin;
 };
 
