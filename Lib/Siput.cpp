@@ -8,24 +8,6 @@ Siput::Siput() {
   distance_to_coin = 0;
 }
 
-Siput::~Siput() {}
-
-int Siput::get_distance() {
-  return distance_to_coin;
-}
-
-void Siput::set_distance(int x) {
-  distance_to_coin = x;
-}
-
-double Siput::get_timer() {
-  return timer;
-}
-
-double Siput::set_timer() {
-  timer = 10;
-}
-
 void Siput::draw() {
   Moveable::set_x(0);
   Moveable::set_y(0);
@@ -37,20 +19,15 @@ void Siput::draw() {
   }
 }
 
-void Siput::move(LinkedList<Coin>& C) {
-  Coin Ctarget;
-  if (inRadius(C) != -999) {
-    Ctarget = get(inRadius(C));
-    int x_coin;
-    x_coin = Ctarget.(Moveable::get_x());
-    //siput move ke x_coin
-    int x_siput;
-    x_siput = get_distance();
-    Moveable::set_x(x_siput+0.1);
+void Siput::move(double sec_since_last, LinkedList<Coin>& C) {
+  if (get_y() == SCREEN_BOTTOM && inRadius(C) != -999) {
+      int x_coin;
+      x_coin = Ctarget.(Moveable::get_x());
+      set_y((x_coin-50)*sec_since_last);
   }
 }
 
-double Siput::euclidean(Coin c) {
+double Siput::euclidean(Coin C) {
   double x_siput = get_x();
   double y_siput = get_y();
   double x_coin = c.get_x();
@@ -58,7 +35,7 @@ double Siput::euclidean(Coin c) {
   return (sqrt(pow(x_siput-x_coin, 2)) + (pow(y_siput-y_coin, 2)));
 }
 
-int Siput::inRadius(LinkedList<Coin> C) {
+int Siput::inRadius(LinkedList<Coin>& C) {
   int idx = 1;
   double radius = 1;
   bool find = false;
@@ -76,7 +53,7 @@ int Siput::inRadius(LinkedList<Coin> C) {
   }
 }
 
-int Siput::find_coin(LinkedList<Coin> C) {
+int Siput::find_coin(LinkedList<Coin>& C) {
   int x;
   x = Moveable::get_x();
   int y;
@@ -93,11 +70,12 @@ int Siput::find_coin(LinkedList<Coin> C) {
   return idx;
 }
 
-void Siput::take_coin(LinkedList<Coin>& C) {
+bool Siput::take_coin(LinkedList<Coin>& C) {
   int idx = inRadius(C);
   if (idx != -999) {
     remove(C.get(idx));
-    //uang bertambah
-
+    return true;
+  } else {
+    return false;
   }
 }
