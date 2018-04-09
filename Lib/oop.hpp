@@ -6,12 +6,13 @@
 #include <SDL2/SDL_ttf.h>
 #include <set>
 #include <string>
+#include "ADT/Rect.h"
 
-#include "../Constant.h"
+extern SDL_Window* sdlWindow;
 
 // Pengaturan ukuran layar yang dihasilkan.
-// const int SCREEN_WIDTH = 640;
-// const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;
 
 // Nama font yang digunakan untuk menggambar tulisan.
 const char* const FONT_NAME = "OpenSans-Regular.ttf";
@@ -29,7 +30,8 @@ void close();
 // Menggambar suatu gambar png, jpg, bmp sehingga tengah gambar berada di
 // titik (x, y).
 // Perubahan di layar baru muncul ketika update_screen() dipanggil.
-void draw_image(std::string filename, int x, int y);
+void draw_image(std::string filename, const Rect& R, bool flipped_x = false, bool flipped_y = false);
+void draw_image(std::string filename, int x, int y, int width, int height, bool flipped_x = false, bool flipped_y = false);
 
 // Menuliskan teks berukuran font_size berwarna (r, g, b) ke layar sehingga
 // kiri atas teks berada di titik (x, y).
@@ -65,6 +67,14 @@ const std::set<SDL_Keycode>& get_pressed_keys();
 // handle_input() terakhir dipanggil.
 const std::set<SDL_Keycode>& get_tapped_keys();
 
+// Mengembalikan posisi mouse pada layar.
+int get_mouse_pos_x();
+int get_mouse_pos_y();
+// 0: left mouse.
+// 1: right mouse.
+bool get_mouse_button_down(int button);
+bool get_mouse_button(int button);
+bool get_mouse_button_up(int button);
 // ---------------------------------- WAKTU ----------------------------------
 
 // Mengembalikan waktu dari permulaan program dalam nilai detik (bisa pecahan).
