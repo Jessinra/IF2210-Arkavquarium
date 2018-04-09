@@ -27,7 +27,8 @@ int Fish::fish_count = 0;
 		set_coin_value(cvalue);
 		fullHunger();	//set hunger to max value
 		set_hungry(false);
-
+		Moveable::set_dir("Right");
+		time_move = FISH_MAX_TIMER;
 	}
 
 		/*------------------------------------------------------------
@@ -81,10 +82,17 @@ int Fish::fish_count = 0;
 		hungry = status;
 	}
 
+	double Fish::get_time_move() {
+		return time_move;
+	}
+
+	void Fish::set_time_move(double t) {
+		time_move = t;
+	}
+
 	const double Fish::get_max_hunger() {
 		return max_hunger;
 	}
-
 		/*------------------------------------------------------------
 									Method 
 		------------------------------------------------------------*/
