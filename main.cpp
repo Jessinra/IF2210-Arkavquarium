@@ -217,8 +217,16 @@ int main(int argc, char* args[]) {
 
                 Food current_food = aquarium.get_list_food().get(i);
 
+                // remove food that touch the bottom
+                if(current_food.get_y() >= SCREEN_BOTTOM){
+                    aquarium.remove_food(current_food);
+                    i--;
+                }
+                
                 // move food
                 current_food.move(sec_since_last);
+
+
 
             }
 

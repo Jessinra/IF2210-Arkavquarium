@@ -4,9 +4,9 @@
 
 const int GUPPY_PRICE = 50;
 const int PIRANHA_PRICE = 250;
-const int food_price = 2;
-const int egg_price = 4000;
-const int siput_price = 1250;
+const int FOOD_PRICE = 2;
+const int EGG_PRICE = 4000;
+const int SIPUT_PRICE = 1250;
 
 const int GUPPY_COIN_VAL_01 = 5;
 const int GUPPY_COIN_VAL_02 = 15; 
@@ -29,9 +29,6 @@ const int GUPPY_HUNGER_INCREASE_RATE = 10;
 const int GUPPY_MOVEMENT_SPD = 50;
 const int PIRANHA_MOVEMENT_SPD = 50;
 const int COIN_MOVEMENT_SPD = 10;
-
-
-
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;

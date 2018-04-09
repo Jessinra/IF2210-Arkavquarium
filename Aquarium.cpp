@@ -138,15 +138,13 @@ void Aquarium::remove_coin(Coin& coin){
 
 void Aquarium::buy_guppy(){
 
-	int guppy_price = 50;
-
 	// Money sufficient 
-	if (Aquarium::money >= guppy_price){
+	if (Aquarium::money >= GUPPY_PRICE){
 
 		Guppy *g = new Guppy();
 		add_guppy(*g);
 
-		Aquarium::money -= guppy_price;
+		Aquarium::money -= GUPPY_PRICE;
 
 	}
 
@@ -160,12 +158,12 @@ void Aquarium::buy_guppy(){
 void Aquarium::buy_piranha(){
 
 	// Money sufficient 
-	if (Aquarium::money >= piranha_price){
+	if (Aquarium::money >= PIRANHA_PRICE){
 
 		Piranha *p = new Piranha();
 		add_piranha(*p);
 
-		Aquarium::money -= piranha_price;
+		Aquarium::money -= PIRANHA_PRICE;
 
 	}
 
@@ -179,12 +177,12 @@ void Aquarium::buy_piranha(){
 void Aquarium::buy_food(){
 
 	// Money sufficient 
-	if (Aquarium::money >= food_price){
+	if (Aquarium::money >= FOOD_PRICE){
 		
 		Food *f = new Food();
 	    add_food(*f);
 
-	    Aquarium::money -= food_price;
+	    Aquarium::money -= FOOD_PRICE;
 	}
 
 	// unsufficient money
@@ -197,10 +195,10 @@ void Aquarium::buy_food(){
 void Aquarium::buy_egg(){
 
 	// Money sufficient 
-	if (Aquarium::money >= egg_price){
+	if (Aquarium::money >= EGG_PRICE){
 		
 		Aquarium::egg++;
-		Aquarium::money -= egg_price;
+		Aquarium::money -= EGG_PRICE;
 	}
 
 	// unsufficient money
@@ -215,12 +213,12 @@ void Aquarium::buy_egg(){
 void Aquarium::buy_snail(){
 
 	// Money sufficient 
-	if (Aquarium::money >= siput_price){
+	if (Aquarium::money >= SIPUT_PRICE){
 
 		Siput *s = new Siput();
         add_siput(*s);
 
-	    Aquarium::money -= siput_price;
+	    Aquarium::money -= SIPUT_PRICE;
 	}
 
 	// unsufficient money
