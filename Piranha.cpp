@@ -7,9 +7,8 @@ using namespace std;
 						Constructor & Destructor 	
 		------------------------------------------------------------*/	
 Piranha::Piranha() {
-	int price = 20;
-	int cvalue = 2;
-	Fish::Fish(price, cvalue);
+
+	Fish::Fish(piranha_price, piranha_coin_value);
 }
 		/*------------------------------------------------------------
 		                        Getter	Setter

@@ -11,13 +11,14 @@
 #include "LinkedList.h"
 
 #include "Lib/oop.hpp"
+#include "Constant.h"
 
 
-const int guppy_price = 50;
-const int piranha_price = 250;
-const int food_price = 2;
-const int egg_price = 4000;
-const int siput_price = 1250;
+// const int guppy_price = 50;
+// const int piranha_price = 250;
+// const int food_price = 2;
+// const int egg_price = 4000;
+// const int siput_price = 1250;
 
 using namespace std;
 

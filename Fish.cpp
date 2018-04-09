@@ -1,6 +1,8 @@
 #include "Fish.h"
 #include <stdlib.h>
 
+#include "Constant.h"
+
 using namespace std;
 
 int Fish::fish_count = 0;
@@ -8,11 +10,13 @@ int Fish::fish_count = 0;
 							Constructor & Destructor 	
 		------------------------------------------------------------*/
 	Fish::Fish(int price, int cvalue) {
-		double x = rand() % 640;
-		double y = rand() % 480;
+		double x = rand() % SCREEN_WIDTH;
+		double y = rand() % SCREEN_HEIGHT;
 		set_x(x);
 		set_y(y);
+
 		Fish::fish_count++;
+
 		fish_id = Fish::fish_count;
 		fish_price = price;
 		coin_value = cvalue;

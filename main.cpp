@@ -150,9 +150,9 @@ int main(int argc, char* args[]) {
                 } else {
 
                     // move fish
-                    current_guppy.move(sec_since_last);
+                    current_guppy.move(sec_since_last, aquarium.get_list_food);
                 
-                    // cek untuk drop coin
+                    // check to drop coin & reduce timer
                     if(current_guppy.produce_coin()){
 
                         Coin *c = new Coin();
@@ -161,10 +161,7 @@ int main(int argc, char* args[]) {
                     }
 
                     // cek untuk makan
-                    
-
-                    // ngurangin c
-
+                    current_guppy.eat(aquarium.get_list_food);
 
                     // ngurangin hunger
                     current_guppy.set_hunger(current_guppy.get_hunger() - hunger_decrease_const)

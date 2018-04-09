@@ -5,6 +5,9 @@
 #include "Food.h"
 #include "Aquarium.h"
 #include "LinkedList.h"
+
+#include "Constant.h"
+
 using namespace std;
 
 class Guppy : public Fish {
@@ -31,7 +34,7 @@ class Guppy : public Fish {
 
 		int get_timer();
 
-		void set_timer();
+		void set_timer(double);
 
 		const int get_max_level();
 		/*------------------------------------------------------------
@@ -40,10 +43,10 @@ class Guppy : public Fish {
 		
 	    void draw();
 	    bool produce_coin();
-	    int findFood(LinkedList<Food> F);
-	    void move(double sec_since_last,LinkedList<Food> F);
-	    double euclidean(Food m);
-	    bool inRadius(LinkedList<Food> F);
+	    int findFood(LinkedList<Food>& F);
+	    void move(double sec_since_last,LinkedList<Food>& F);
+	    double euclidean(Food& m);
+	    bool inRadius(LinkedList<Food>& F);
 	    void eat(LinkedList<Food>& F);
 	    void grow();
 	
@@ -52,7 +55,7 @@ class Guppy : public Fish {
 		int number_eat;
 	    int level_grow;
 	    double timer; //guppy mengeluarkan uang setelah bbrp detik
-	    const int max_level=3;
+	    const int max_level = GUPPY_MAX_LV;
 };
 
 #endif

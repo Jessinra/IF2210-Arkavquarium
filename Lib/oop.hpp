@@ -7,9 +7,11 @@
 #include <set>
 #include <string>
 
+#include "../Constant.h"
+
 // Pengaturan ukuran layar yang dihasilkan.
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+// const int SCREEN_WIDTH = 640;
+// const int SCREEN_HEIGHT = 480;
 
 // Nama font yang digunakan untuk menggambar tulisan.
 const char* const FONT_NAME = "OpenSans-Regular.ttf";

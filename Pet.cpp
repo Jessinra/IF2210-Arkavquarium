@@ -1,6 +1,9 @@
 #include "Pet.h"
 #include "Lib/oop.hpp"
 #include <iostream>
+
+#include "Constant.h"
+
 using namespace std;
 
 Pet::Pet() {

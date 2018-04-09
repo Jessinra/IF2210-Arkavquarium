@@ -7,6 +7,8 @@
 
 using namespace std;
 
+
+
 class Fish : public Object, Moveable {
 
 	public:
@@ -22,24 +24,24 @@ class Fish : public Object, Moveable {
 								Getter	Setter
 		------------------------------------------------------------*/
 		
-	int get_id();
-	
-	int get_price();
-	
-	int get_coin_value();
-
-	void set_coin_value(int cvalue);
-
-	double get_hunger();
-	
-	int get_speed();
-
-	bool get_hungry();
-
-	void set_hungry(bool status);
-
-	const int get_max_hunger();
+		int get_id();
 		
+		int get_price();
+		
+		int get_coin_value();
+
+		void set_coin_value(int cvalue);
+
+		double get_hunger();
+		
+		int get_speed();
+
+		bool get_hungry();
+
+		void set_hungry(bool status);
+
+		const int get_max_hunger();
+			
 		/*------------------------------------------------------------
 									Method 
 		------------------------------------------------------------*/
@@ -63,10 +65,11 @@ class Fish : public Object, Moveable {
 	    double hunger;
 	    int speed;
 	    bool hungry;
+	    const int max_hunger = GUPPY_MAX_HUNGER;
 
 	    static int fish_count; //jumlah ikan
 
-	    const int max_hunger = 20;
+	    
   	
   	
     
