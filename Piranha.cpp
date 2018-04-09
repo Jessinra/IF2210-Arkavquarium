@@ -155,7 +155,7 @@ int eat(LinkedList<Guppy> &G) {
 		int guppy_lv = G.get(idx).get_level();
 
 		// remove guppy from list
-		remove(G.get(idx));
+		G.remove(G.get(idx));
 
 		// set hunger to max and state is hungry to false
 		Fish::fullHunger();
