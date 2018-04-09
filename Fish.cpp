@@ -6,21 +6,28 @@
 using namespace std;
 
 int Fish::fish_count = 0;
+
 		/*------------------------------------------------------------
 							Constructor & Destructor 	
 		------------------------------------------------------------*/
 	Fish::Fish(int price, int cvalue) {
+
+		// random position
 		double x = rand() % SCREEN_WIDTH;
 		double y = rand() % SCREEN_HEIGHT;
+
+		// set position
 		set_x(x);
 		set_y(y);
 
 		Fish::fish_count++;
 
-		fish_id = Fish::fish_count;
-		fish_price = price;
-		coin_value = cvalue;
-		hungry = false;
+		set_id(Fish::fish_count);
+		set_price(price);
+		set_coin_value(cvalue);
+		fullHunger();	//set hunger to max value
+		set_hungry(false);
+
 	}
 
 		/*------------------------------------------------------------
@@ -30,10 +37,18 @@ int Fish::fish_count = 0;
 		return fish_id;
 	}
 	
+	void Fish::set_id(int id){
+		fish_id = id;
+	}
+
 	int Fish::get_price() {
 		return fish_price;
 	}
 	
+	void Fish::set_price(int price){
+		fish_price = price;
+	}
+
 	int Fish::get_coin_value() {
 		return coin_value;
 	}
@@ -46,8 +61,16 @@ int Fish::fish_count = 0;
 		return hunger;
 	}
 	
+	void Fish::set_hunger(double hunger){
+		this.hunger = hunger;
+	}
+
 	int Fish::get_speed() {
 		return speed;
+	}
+
+	void Fish::set_speed(int spd){
+		speed = spd;
 	}
 
 	bool Fish::get_hungry() {
@@ -58,7 +81,7 @@ int Fish::fish_count = 0;
 		hungry = status;
 	}
 
-	const int Fish::get_max_hunger() {
+	const double Fish::get_max_hunger() {
 		return max_hunger;
 	}
 
@@ -66,24 +89,33 @@ int Fish::fish_count = 0;
 									Method 
 		------------------------------------------------------------*/
 	void Fish::fullHunger() {
-		hunger = max_hunger;
+		// set hunger to max value 
+
+		set_hunger(get_max_hunger());
 	}
 
 	void Fish::makeHungry() {
-		hunger = hunger - 0.5;
+		// Periodicly make fish hungry 
+
+		set_hunger(get_hunger() - FISH_HUNGER_DECREASE_RATE);
 	}
 
-	void Fish::isHungry() {
-		if (get_hunger() < get_max_hunger()) {
+	bool Fish::isHungry() {
+		// check if fish hunger is below certain point
+
+		if (get_hunger() <=  FISH_HUNGRY_BORDERLINE) {
 			set_hungry(true);
+			return true;
 		}
 		else {
-			set_hungry(false);
+			return false;
 		}
 	}
 
 	bool Fish::isDead() {
-		if (get_hunger() == 0) {
+		// check if fish hunger is below or equal zero
+		
+		if (get_hunger() <= 0) {
 			return true;
 		}
 		else {

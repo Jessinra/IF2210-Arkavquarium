@@ -155,7 +155,7 @@ int main(int argc, char* args[]) {
                     // check to drop coin & reduce timer
                     if(current_guppy.produce_coin()){
 
-                        Coin *c = new Coin();
+                        Coin *c = new Coin(current_guppy.get_x(), current_guppy.get_y(), current_guppy.get_coin_value());
                         aquarium.add_coin(*c);
 
                     }
@@ -164,7 +164,7 @@ int main(int argc, char* args[]) {
                     current_guppy.eat(aquarium.get_list_food);
 
                     // ngurangin hunger
-                    current_guppy.set_hunger(current_guppy.get_hunger() - hunger_decrease_const)
+                    current_guppy.makeHungry();
                     
                 }
             }
@@ -184,15 +184,20 @@ int main(int argc, char* args[]) {
 
                     // move fish
                     current_piranha.move(sec_since_last);
-                    
+                
+                    // cek untuk makan
+                    int eaten_lv = current_piranha.eat(aquarium.get_list_guppy);
 
+                    // check drop coin
+                    if (eaten_lv > 0){
 
-                    // cek untuk makan & drop coin
-
-
+                        int coin_val = current_piranha.get_coin_value() * (eaten_lv+1); // piranha coin value = guppy price 
+                        Coin *c = new Coin(current_piranha.get_x(), current_piranha.get_y(), coin_val);
+                        aquarium.add_coin(*c);
+                    }
 
                     // ngurangin hunger
-                    current_piranha.set_hunger(current_piranha.get_hunger() - hunger_decrease_const)
+                    current_piranha.makeHungry();
 
                 }
             }

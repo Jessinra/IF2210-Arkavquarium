@@ -25,22 +25,30 @@ class Fish : public Object, Moveable {
 		------------------------------------------------------------*/
 		
 		int get_id();
+
+		void set_id(int);
 		
 		int get_price();
+
+		void set_price(int);
 		
 		int get_coin_value();
 
-		void set_coin_value(int cvalue);
+		void set_coin_value(int);
 
 		double get_hunger();
-		
+
+		void set_hunger(double);
+	
 		int get_speed();
+
+		void set_speed(int);
 
 		bool get_hungry();
 
-		void set_hungry(bool status);
+		void set_hungry(bool);
 
-		const int get_max_hunger();
+		const double get_max_hunger();
 			
 		/*------------------------------------------------------------
 									Method 
@@ -52,7 +60,7 @@ class Fish : public Object, Moveable {
 		void makeHungry();
 
 		//return true kalau lapar
-		void isHungry();
+		bool isHungry();
 
 		//return true if ikan mati
 		bool isDead();
@@ -65,7 +73,7 @@ class Fish : public Object, Moveable {
 	    double hunger;
 	    int speed;
 	    bool hungry;
-	    const int max_hunger = GUPPY_MAX_HUNGER;
+	    const double max_hunger = FISH_MAX_HUNGER;
 
 	    static int fish_count; //jumlah ikan
 

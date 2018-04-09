@@ -3,16 +3,19 @@
 
 using namespace std;
 
-	  	/*------------------------------------------------------------
-						Constructor & Destructor 	
-		------------------------------------------------------------*/	
+/*------------------------------------------------------------
+				Constructor & Destructor 	
+------------------------------------------------------------*/	
 Piranha::Piranha() {
 
-	Fish::Fish(piranha_price, piranha_coin_value);
+	Fish::Fish(PIRANHA_PRICE, PIRANHA_COIN_VAL);
 }
-		/*------------------------------------------------------------
-		                        Getter	Setter
-		------------------------------------------------------------*/	
+
+
+/*------------------------------------------------------------
+                        Getter	Setter
+------------------------------------------------------------*/	
+
 //implement Moveable
 double Piranha::get_x() {
 	return Moveable::get_x();
@@ -21,21 +24,28 @@ double Piranha::get_x() {
 double Piranha::get_y() {
 	return Moveable::get_y();
 }
-		/*------------------------------------------------------------
-									Method 
-		------------------------------------------------------------*/	
+
+
+/*------------------------------------------------------------
+							Method 
+------------------------------------------------------------*/	
+
 void Piranha::draw() {
+	// draw piranha on screen 
+
 	if (Moveable::get_dir() == "Left") {
-		draw_image("piranha.png", Moveable::get_x(), Moveable::get_y()); //blm ada left right
+		draw_image(FILE_piranha_left, Moveable::get_x(), Moveable::get_y()); 
 	}
 	else {
-		draw_image("piranha.png", Moveable::get_x(), Moveable::get_y());	
+		draw_image(FILE_piranha_right, Moveable::get_x(), Moveable::get_y());	
 	}
 }
 
-int Piranha::findGuppy(LinkedList<Guppy> G) {
+int Piranha::findGuppy(LinkedList<Guppy>& G) {
+
 	int idx = 1;
 	int i = 2; //indeks perbandingan mulai dari 2
+
 	while (i<=G.getNBelmt()) {
 		if (euclidean(G.get(idx) > euclidean(G.get(i)))) {
 			idx = i;
@@ -47,9 +57,11 @@ int Piranha::findGuppy(LinkedList<Guppy> G) {
 	return idx;
 }
 
-void Piranha::move(double sec_since_last,LinkedList<Guppy> G) {
+void Piranha::move(double sec_since_last,LinkedList<Guppy>& G) {
+
 	double x;
 	double y;
+
 	if (Fish::isHungry()) {
 		//mengejar food pakai tips
 		int idx = findGuppy(G);
@@ -57,26 +69,33 @@ void Piranha::move(double sec_since_last,LinkedList<Guppy> G) {
 		set_x(get_x()+Fish::get_speed()*cos(a)*sec_since_last);
 		set_y(get_y()+Fish::get_speed()*sin(a)*sec_since_last);
 	}
+
 	else {
-		x = rand() % 640;
-		y = rand() % 480;
-		if (x>=320) {
+
+		x = rand() % SCREEN_WIDTH;
+		y = rand() % SCREEN_HEIGHT;
+
+		if (x >= (SCREEN_WIDTH/2)) {
 			x = 1;
 		}
 		else {
 			x = -1;
 		}
-		if (y>=240) {
+		if (y >= (SCREEN_HEIGHT/2)) {
 			y = 1;
 		}
 		else {
 			y = -1;
 		}
-		if ((get_x() > 0) && (get_x() < 640) && (get_y() > 0) && (get_y() < 480)) {
+
+		if ((get_x() > 0) && (get_x() < SCREEN_WIDTH) && (get_y() > 0) && (get_y() < SCREEN_HEIGHT)) {
+
 			set_x(get_x()+Fish::get_speed()*sec_since_last*x);
 			set_y(get_y()+Fish::get_speed()*sec_since_last*y);
 		}
+
 		else {
+
 			if (get_x() == 0) {
 				set_x(get_x()+Fish::get_speed()*sec_since_last);	
 			}
@@ -91,21 +110,24 @@ void Piranha::move(double sec_since_last,LinkedList<Guppy> G) {
 			}
 		}
 	}
-	eat();
 }
 
-double Piranha::euclidean(Guppy g) {
+double Piranha::euclidean(Guppy &g) {
+
 	double x_piranha = get_x();
 	double y_piranha = get_y();
 	double x_guppy = g.get_x(); 
 	double y_guppy = g.get_y();
+
 	return (sqrt(pow(x_piranha-x_guppy, 2)) + (pow(y_piranha-y_guppy, 2)));
 }
 
-bool Piranha::inRadius(LinkedList<Guppy> G) {
+bool Piranha::inRadius(LinkedList<Guppy> &G) {
+
 	int idx = 1;
 	double radius = 1;
 	bool find = false;
+	
 	while (!find && i<G.getNBelmt()) {
 		if (radius > euclidean(G.get(idx))) {
 			find = true;
@@ -122,16 +144,30 @@ bool Piranha::inRadius(LinkedList<Guppy> G) {
 	}
 }
 
-bool eat(LinkedList<Guppy>& G) {
+int eat(LinkedList<Guppy> &G) {
+
 	int idx = inRadius();
+
+	// found
 	if (idx != -999) {
+
+		// get eaten guppy lvl
+		int guppy_lv = G.get(idx).get_level();
+
+		// remove guppy from list
+		remove(G.get(idx));
+
+		// set hunger to max and state is hungry to false
 		Fish::fullHunger();
 		Fish::setHungry(false);
-		remove(G.get(idx));
-		return true;
+		
+		return guppy_lv;
 	}
+
+	// not eating anything
 	else {
-		return false;
+
+		return -1;
 	}
 }
 

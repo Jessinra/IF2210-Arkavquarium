@@ -10,7 +10,11 @@ Guppy::Guppy() {
 	
 	// value from constant.h
 	Fish::Fish(GUPPY_PRICE, GUPPY_COIN_VAL_01);
-	level_grow = 1;
+	
+	set_number_eat(0);
+	set_timer(GUPPY_DROP_COIN_TIME);
+	set_level(1);
+
 }
 
 /*------------------------------------------------------------
@@ -216,7 +220,7 @@ void Guppy::eat(LinkedList<Food>& F) {
 	if (idx != -999) {
 
 		// remove food from list 
-		remove(F.get(idx));
+		F.remove(F.get(idx));
 
 		// set hunger to max and state ishungry to false
 		Fish::fullHunger();
@@ -235,7 +239,7 @@ void Guppy::grow() {
 	if (get_number_eat() == GUPPY_REQ_FOOD_COUNT && get_level() != GUPPY_MAX_LV) {
 		
 		// increase fish lv
-		set_level(level_grow+1);
+		set_level(get_level()+1);
 		
 		// increase max hunger 
 		set_maxHunger(get_maxHunger() + GUPPY_HUNGER_INCREASE_RATE); //tiap naik level tambah bisa nambah laper
