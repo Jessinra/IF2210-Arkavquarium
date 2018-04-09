@@ -28,6 +28,8 @@ void Siput::move(double sec_since_last, LinkedList<Coin>& C) {
 }
 
 double Siput::euclidean(Coin C) {
+  // get euclidean distance to coin
+  
   double x_siput = get_x();
   double y_siput = get_y();
   double x_coin = c.get_x();
