@@ -61,7 +61,9 @@ void Aquarium::draw(){
 		list_coin.get(i).draw();
 	}
 
-	// draw aquarium also
+	// draw aquarium
+	draw_image(FILE_aquarium, SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+
 	// tampilin uang
 	// tampilin telur
 	// tampilin button yang dapat digunakan

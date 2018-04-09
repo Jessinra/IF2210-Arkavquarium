@@ -59,5 +59,7 @@ const string FILE_coin = "img/coin.png";
 
 const string FILE_food = "img/food.png";
 
+const string FILE_aquarium = "img/aquarium.png";
+
 
 #endif
