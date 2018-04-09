@@ -48,8 +48,11 @@ class Fish : public Object, Moveable {
 
 		void set_hungry(bool);
 
+		double get_time_move();
+
+		void set_time_move(double t);
+
 		const double get_max_hunger();
-			
 		/*------------------------------------------------------------
 									Method 
 		------------------------------------------------------------*/
@@ -73,6 +76,7 @@ class Fish : public Object, Moveable {
 	    double hunger;
 	    int speed;
 	    bool hungry;
+	    double time_move;
 	    const double max_hunger = FISH_MAX_HUNGER;
 
 	    static int fish_count; //jumlah ikan

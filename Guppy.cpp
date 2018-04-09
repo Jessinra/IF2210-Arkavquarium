@@ -64,29 +64,57 @@ double Guppy::get_y() {
 void Guppy::draw() {
 	// draw guppy on screen 
 
-	if (level_grow == 1) {
-		if (Moveable::get_dir() == "Left") {
-			draw_image(FILE_guppy_01_left, get_x(), get_y());
-		}
-		else {
-			draw_image(FILE_guppy_01_right, get_x(), get_y());	
-		}
+	if (Fish::isHungry()) {
+			if (level_grow == 1) {
+				if (Moveable::get_dir() == "Left") {
+					draw_image(FILE_guppy_01_left_hungry, get_x(), get_y());
+				}
+				else {
+					draw_image(FILE_guppy_01_right_hungry, get_x(), get_y());	
+				}
+			}
+			else if (level_grow == 2) {
+				if (Moveable::get_dir() == "Left") {
+					draw_image(FILE_guppy_02_left_hungry, get_x(), get_y());
+				}
+				else {
+					draw_image(FILE_guppy_02_right_hungry, get_x(), get_y());	
+				}
+			}
+			else if (level_grow == 3) {
+				if (Moveable::get_dir() == "Left") {
+					draw_image(FILE_guppy_03_left_hungry, get_x(), get_y());
+				}
+				else {
+					draw_image(FILE_guppy_03_right_hungry, get_x(), get_y());	
+				}
+			}
 	}
-	else if (level_grow == 2) {
-		if (Moveable::get_dir() == "Left") {
-			draw_image(FILE_guppy_02_left, get_x(), get_y());
-		}
-		else {
-			draw_image(FILE_guppy_02_right, get_x(), get_y());	
-		}
-	}
-	else if (level_grow == 3) {
-		if (Moveable::get_dir() == "Left") {
-			draw_image(FILE_guppy_03_left, get_x(), get_y());
-		}
-		else {
-			draw_image(FILE_guppy_03_right, get_x(), get_y());	
-		}
+	else {
+			if (level_grow == 1) {
+				if (Moveable::get_dir() == "Left") {
+					draw_image(FILE_guppy_01_left, get_x(), get_y());
+				}
+				else {
+					draw_image(FILE_guppy_01_right, get_x(), get_y());	
+				}
+			}
+			else if (level_grow == 2) {
+				if (Moveable::get_dir() == "Left") {
+					draw_image(FILE_guppy_02_left, get_x(), get_y());
+				}
+				else {
+					draw_image(FILE_guppy_02_right, get_x(), get_y());	
+				}
+			}
+			else if (level_grow == 3) {
+				if (Moveable::get_dir() == "Left") {
+					draw_image(FILE_guppy_03_left, get_x(), get_y());
+				}
+				else {
+					draw_image(FILE_guppy_03_right, get_x(), get_y());	
+				}
+			}
 	}
 }
 
@@ -96,7 +124,7 @@ bool Guppy::produce_coin() {
 	// if yes,
 	if(get_timer() <= 0){
 
-		// then sex timer to max, and return true
+		// then set timer to max, and return true
 		set_timer(GUPPY_DROP_COIN_TIME);
 		return true;
 	}
@@ -104,7 +132,7 @@ bool Guppy::produce_coin() {
 	else{
 
 		// reduce drop coin time 
-		set_timer(get_timer()-GUPPY_TIMER_DEC);
+		set_timer(get_timer()-FISH_TIMER_DEC);
 		return false;
 	}
 }   
@@ -140,36 +168,41 @@ void Guppy::move(double sec_since_last,LinkedList<Food> F) {
 		set_y(get_y()+Fish::get_speed()*sin(a)*sec_since_last);
 	}
 	else {
-
-		x = rand() % SCREEN_WIDTH;
-		y = rand() % SCREEN_HEIGHT;
-		if (x >= (SCREEN_WIDTH/2)) {
-			x = 1;
+		if (Fish::get_time_move() == 0 || get_x() == SCREEN_LEFT || get_y() == SCREEN_TOP || get_x() == SCREEN_RIGHT || get_y() == SCREEN_BOTTOM) {
+			Fish::set_time_move(FISH_MAX_TIMER);
+			x = rand() % SCREEN_WIDTH;
+			y = rand() % SCREEN_HEIGHT;
+			if (x >= (SCREEN_WIDTH/2)) {
+				x = 1;
+			}
+			else {
+				x = -1;
+			}
+			if (y >= (SCREEN_HEIGHT/2)) {
+				y = 1;
+			}
+			else {
+				y = -1;
+			}
 		}
 		else {
-			x = -1;
+			Fish::set_time_move(Fish::get_time_move()-FISH_TIMER_DEC);
 		}
-		if (y >= (SCREEN_HEIGHT/2)) {
-			y = 1;
-		}
-		else {
-			y = -1;
-		}
-		if ((get_x() > 0) && (get_x() < SCREEN_WIDTH) && (get_y() > 0) && (get_y() < SCREEN_HEIGHT)) {
+		if ((get_x() > SCREEN_LEFT) && (get_x() < SCREEN_RIGHT) && (get_y() > SCREEN_TOP) && (get_y() < SCREEN_BOTTOM)) {
 			set_x(get_x()+Fish::get_speed()*sec_since_last*x);
 			set_y(get_y()+Fish::get_speed()*sec_since_last*y);
 		}
 		else {
-			if (get_x() == 0) {
+			if (get_x() == SCREEN_LEFT) {
 				set_x(get_x()+Fish::get_speed()*sec_since_last);	
 			}
-			else if (get_x() == SCREEN_WIDTH) {
+			else if (get_x() == SCREEN_RIGHT) {
 				set_x(get_x()-Fish::get_speed()*sec_since_last);	
 			}
-			if (get_y() == 0) {
+			if (get_y() == SCREEN_TOP) {
 				set_y(get_y()+Fish::get_speed()*sec_since_last);	
 			}
-			else if (get_y() == SCREEN_HEIGHT) {
+			else if (get_y() == SCREEN_BOTTOM) {
 				set_y(get_y()-Fish::get_speed()*sec_since_last);	
 			}
 		}
