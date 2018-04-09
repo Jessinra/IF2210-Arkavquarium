@@ -3,6 +3,9 @@
 
 #include "Object.h"
 #include "Moveable.h"
+
+#include "Constant.h"
+
 using namespace std;
 
 class Food : public Object, Moveable{
@@ -14,17 +17,22 @@ class Food : public Object, Moveable{
 		------------------------------------------------------------*/
 
 		Food();
-    ~Food();
+    	~Food();
 
 	    /*------------------------------------------------------------
 							 	Getter	Setter
 		------------------------------------------------------------*/
 
 		int get_id();
-		int get_type();
-		int get_value();
+		void set_id(int);
 
-		void set_value(int x);
+		// int get_type();
+		// int get_value();
+
+		// void set_value(int x);
+
+		int get_speed();
+		void set_speed(int);
 
 		/*------------------------------------------------------------
 									Method
@@ -32,13 +40,16 @@ class Food : public Object, Moveable{
 
 	    void draw();
 	    void remove();
-	    void move();
+	    void move(double);
 
   	private:
 
   		int food_id;
-    	int food_type;
-    	int food_value;
+    	// int food_type;
+    	// int food_value;
+  		int food_speed;
+
+    	static int food_count;
 
 
 };

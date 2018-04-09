@@ -35,6 +35,7 @@ const int COIN_MOVEMENT_SPD = 10;
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
+const int SCREEN_BOTTOM = SCREEN_HEIGHT - 50;
 
 
 
@@ -55,6 +56,8 @@ const string FILE_siput_left = "img/snail.png";
 const string FILE_siput_right = "img/snail_r.png";
 
 const string FILE_coin = "img/coin.png";
+
+const string FILE_food = "img/food.png";
 
 
 #endif

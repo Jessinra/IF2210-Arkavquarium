@@ -69,7 +69,7 @@ void Coin::draw() {
 void Coin::move(double sec_since_last) {
 
     // if coin is not on bottom yet, 
-    if (get_y() <= (SCREEN_HEIGHT-50)) {
+    if (get_y() <= SCREEN_BOTTOM) {
 
         // move coin towards bottom of the tank
         set_y(get_y() - (get_speed() * sec_since_last));
