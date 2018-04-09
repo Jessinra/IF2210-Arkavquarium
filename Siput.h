@@ -22,23 +22,18 @@ class Siput : public Pet {
 
 		void set_distance(int x);
 
-    int get_timer();
-
-    void set_timer();
-
 		/*------------------------------------------------------------
 									Method
 		------------------------------------------------------------*/
 
     void draw();
-    void move(LinkedListList<Coin>& C);
-    void find_coin(LinkedList<Coin>& C);
-   	void take_coin(LinkedList<Coin>& C);
+    void move(double sec_since_last, LinkedListList<Coin>& C);
     double euclidean(Coin C);
+    void find_coin(LinkedList<Coin>& C);
     int inRadius(LinkedList<Coin>& C);
+    bool take_coin(LinkedList<Coin>& C);
 
   	private:
-      double timer;
     	int distance_to_coin;
 };
 
