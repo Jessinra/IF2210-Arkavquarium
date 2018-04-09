@@ -72,8 +72,12 @@ int get_mouse_pos_x();
 int get_mouse_pos_y();
 // 0: left mouse.
 // 1: right mouse.
+
+//dipakai di main get_mouse_button_down(0){ } artinya klik kiri yg ditekan
 bool get_mouse_button_down(int button);
+//dipakai di main get_mouse_button(0){ } artinya klik kiri yg ditahan (hold)
 bool get_mouse_button(int button);
+//dipakai di main get_mouse_button_up(0){ } artinya klik kiri yg dilepas
 bool get_mouse_button_up(int button);
 // ---------------------------------- WAKTU ----------------------------------
 

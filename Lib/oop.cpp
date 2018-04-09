@@ -225,7 +225,7 @@ int get_mouse_pos_y() {
     return mouse_pos[1];
 }
 
-bool get_mouse_button_down(int button) { //dipakai di main get_mouse_button_down(0){ } artinya klik kiri yg ditekan
+bool get_mouse_button_down(int button) {
     if (button == 0) {
         return mouse_state[2];
     } else if (button == 1) {
@@ -234,7 +234,7 @@ bool get_mouse_button_down(int button) { //dipakai di main get_mouse_button_down
     return 0;
 }
 
-bool get_mouse_button(int button) { //dipakai di main get_mouse_button(0){ } artinya klik kiri yg ditahan (hold)
+bool get_mouse_button(int button) {
     if (button == 0) {
         return mouse_state[0] && !mouse_state[2];
     } else if (button == 1) {
@@ -243,7 +243,7 @@ bool get_mouse_button(int button) { //dipakai di main get_mouse_button(0){ } art
     return 0;
 }
 
-bool get_mouse_button_up(int button) { //dipakai di main get_mouse_button_up(0){ } artinya klik kiri yg dilepas
+bool get_mouse_button_up(int button) {
     if (button == 0) {
         return mouse_state[4];
     } else if (button == 1) {
