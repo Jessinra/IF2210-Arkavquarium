@@ -6,6 +6,7 @@ using namespace std;
 
 Siput::Siput() {
     distance_to_coin = 0;
+    set_speed(SIPUT_MOVEMENT_SPD);
 }
 
 int Siput::get_speed() {
@@ -28,19 +29,27 @@ void Siput::draw() {
 }
 
 void Siput::move(double sec_since_last, LinkedList<Coin>& C) {
-  if (get_y() == SCREEN_BOTTOM && inRadius(C) != -999) {
-      int x_coin;
-      x_coin = Ctarget.(Moveable::get_x());
-      set_x((x_coin-50)*sec_since_last);
-  }
+    if (get_y() == SCREEN_BOTTOM && inRadius(C) != -999) {
+
+        // get the x value of nearest coin
+        int idx = inRadius(C);
+
+        // set siput x , to
+        double a = atan2(C.get(idx).get_x() - get_x(), C.get(idx).get_y() - get_y());
+        set_x(get_x()+ get_speed() * cos(a) * sec_since_last);
+
+    }
 }
 
 double Siput::euclidean(Coin C) {
-  double x_siput = get_x();
-  double y_siput = get_y();
-  double x_coin = c.get_x();
-  double y_coin = c.get_y();
-  return (sqrt(pow(x_siput-x_coin, 2)) + (pow(y_siput-y_coin, 2)));
+    // get euclidean distance to coin
+
+    double x_siput = get_x();
+    double y_siput = get_y();
+    double x_coin = c.get_x();
+    double y_coin = c.get_y();
+
+    return (sqrt(pow(x_siput-x_coin, 2)) + (pow(y_siput-y_coin, 2)));
 }
 
 int Siput::inRadius(LinkedList<Coin>& C) {
