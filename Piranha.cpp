@@ -9,6 +9,7 @@ using namespace std;
 Piranha::Piranha() {
 
 	Fish::Fish(PIRANHA_PRICE, PIRANHA_COIN_VAL);
+	set_speed(PIRANHA_MOVEMENT_SPD);
 }
 
 

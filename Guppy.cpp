@@ -10,7 +10,8 @@ Guppy::Guppy() {
 	
 	// value from constant.h
 	Fish::Fish(GUPPY_PRICE, GUPPY_COIN_VAL_01);
-	
+	set_speed(GUPPY_MOVEMENT_SPD);
+
 	set_number_eat(0);
 	set_timer(GUPPY_DROP_COIN_TIME);
 	set_level(1);

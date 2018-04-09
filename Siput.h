@@ -5,6 +5,7 @@
 using namespace std;
 
 class Siput : public Pet {
+    
   	public:
 
    		/*------------------------------------------------------------
@@ -26,10 +27,10 @@ class Siput : public Pet {
 									Method
 		------------------------------------------------------------*/
 
-    void draw();
-    void move();
-    void find_coin();
-   	void take_coin(LinkedList<Coin>& C);
+        void draw();
+        void move();
+        void find_coin();
+       	void take_coin(LinkedList<Coin>& C);
 
   	private:
 

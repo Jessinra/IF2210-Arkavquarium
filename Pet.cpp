@@ -6,9 +6,13 @@
 
 using namespace std;
 
+Pet::pet_count = 0;
+
 Pet::Pet() {
-  pet_id = 0;
-  pet_count = 0;
+
+	Pet::pet_count++;
+  	pet_id = Pet::pet_count;
+
 }
 
 Pet::~Pet() {}

@@ -23,8 +23,17 @@ class Coin : public Object, Moveable {
 		------------------------------------------------------------*/
 		
 		int get_id();
+
+		void set_id(int);
+
 		int get_value();
+
+		void set_value();
+
+		int get_speed();
 		
+		void set_speed();
+
 		/*------------------------------------------------------------
 									Method  
 		------------------------------------------------------------*/
@@ -36,6 +45,7 @@ class Coin : public Object, Moveable {
 	private:
 		int coin_id;
 		int coin_value;
+		int coin_speed;
 
 };
 
