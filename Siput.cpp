@@ -9,32 +9,45 @@ Siput::Siput() {
 }
 
 void Siput::draw() {
-  Moveable::set_x(0);
-  Moveable::set_y(0);
-  // draw siput on screen
-  if (Moveable::get_dir() == "Left"){
-      draw_image(FILE_siput_left, get_x(), get_y());
-  } else {
-      draw_image(FILE_siput_right, get_x(), get_y());
-  }
+
+    Moveable::set_x(0);
+    Moveable::set_y(0);
+
+    // draw siput on screen
+    if (Moveable::get_dir() == "Left"){
+
+        draw_image(FILE_siput_left, get_x(), get_y());
+
+    } else {
+
+        draw_image(FILE_siput_right, get_x(), get_y());
+    }
 }
 
 void Siput::move(double sec_since_last, LinkedList<Coin>& C) {
-  if (get_y() == SCREEN_BOTTOM && inRadius(C) != -999) {
-      int x_coin;
-      x_coin = Ctarget.(Moveable::get_x());
-      set_y((x_coin-50)*sec_since_last);
-  }
+
+
+    if (get_y() == SCREEN_BOTTOM && inRadius(C) != -999) {
+
+        // get the x value of nearest coin
+        int idx = inRadius(C);
+
+        // set siput x , to 
+        double a = atan2(C.get(idx).get_x() - get_x(), C.get(idx).get_y() - get_y());
+        set_x(get_x()+ get_speed() * cos(a) * sec_since_last);
+
+    }
 }
 
 double Siput::euclidean(Coin C) {
-  // get euclidean distance to coin
-  
-  double x_siput = get_x();
-  double y_siput = get_y();
-  double x_coin = c.get_x();
-  double y_coin = c.get_y();
-  return (sqrt(pow(x_siput-x_coin, 2)) + (pow(y_siput-y_coin, 2)));
+    // get euclidean distance to coin
+
+    double x_siput = get_x();
+    double y_siput = get_y();
+    double x_coin = c.get_x();
+    double y_coin = c.get_y();
+    
+    return (sqrt(pow(x_siput-x_coin, 2)) + (pow(y_siput-y_coin, 2)));
 }
 
 int Siput::inRadius(LinkedList<Coin>& C) {
