@@ -5,7 +5,8 @@
 using namespace std;
 
 Siput::Siput() {
-  distance_to_coin = 0;
+    distance_to_coin = 0;
+    set_speed(SIPUT_MOVEMENT_SPD);
 }
 
 void Siput::draw() {
@@ -46,7 +47,7 @@ double Siput::euclidean(Coin C) {
     double y_siput = get_y();
     double x_coin = c.get_x();
     double y_coin = c.get_y();
-    
+
     return (sqrt(pow(x_siput-x_coin, 2)) + (pow(y_siput-y_coin, 2)));
 }
 

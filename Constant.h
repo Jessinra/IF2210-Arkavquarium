@@ -29,10 +29,12 @@ const int GUPPY_HUNGER_INCREASE_RATE = 10;
 const int GUPPY_MOVEMENT_SPD = 50;
 const int PIRANHA_MOVEMENT_SPD = 50;
 const int COIN_MOVEMENT_SPD = 10;
+const int SIPUT_MOVEMENT_SPD = 50;
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 const int SCREEN_BOTTOM = SCREEN_HEIGHT - 50;
+
 
 
 
