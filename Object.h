@@ -14,12 +14,8 @@ class Object {
 		/*------------------------------------------------------------
 									Method  
 		------------------------------------------------------------*/
+			
 		
-		// draw on screen
-		virtual void draw() = 0;		
-		
-		// remove object (calling destructor)
-		virtual void remove() = 0;	
 	
 };
 

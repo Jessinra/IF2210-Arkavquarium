@@ -5,34 +5,28 @@
 #include "Moveable.h"
 using namespace std;
 
-class Pet : public Object, Moveable {
+class Pet : public Object, public Moveable {
   	public:
-  		
+
   		/*------------------------------------------------------------
-			 				Constructor & Destructor 	
+			 				Constructor & Destructor
 		------------------------------------------------------------*/
-		
+
 	    Pet();
 	    ~Pet();
-	    
+
 	    /*------------------------------------------------------------
-									Getter  
+									Getter
 		------------------------------------------------------------*/
-		
+
 		int get_id();
-		
+
 		/*------------------------------------------------------------
-									Method 
-		------------------------------------------------------------*/	
-		
-	    void draw();
-	    void remove();
-	    virtual void move();
-		
-	
-	    
+									Method
+		------------------------------------------------------------*/
+
 	private:
-		
+
 		int pet_id;
 		static int pet_count;
 };

@@ -2,6 +2,12 @@
 #define PIRANHA_H
 
 #include "Fish.h"
+#include "Guppy.h"
+#include "Aquarium.h"
+#include "LinkedList.h"
+
+#include "Constant.h"
+
 using namespace std;
 
 class Piranha : public Fish {
@@ -13,28 +19,17 @@ class Piranha : public Fish {
 		------------------------------------------------------------*/	
 		
 		Piranha();
-		~Piranha();
-		Piranha(const Piranha& );
-		Piranha& operator=(const Piranha& );
 		
 		/*------------------------------------------------------------
 									Method 
 		------------------------------------------------------------*/
 		
-		//approach guppy or random move
-		void move();
-		
-		// draw on screen (GUI)
-		void draw();
-		
-		//produce after eat
-		void produce_coin(); 
-		
-		//eat guppy
-		void eat(); 
-		
-		// check hunger condition
-		bool isFull();
+	    void draw();
+	    int findGuppy(LinkedList<Guppy> &G);
+	    void move(double sec_since_last,LinkedList<Guppy> &G);
+	    double euclidean(Guppy &g);
+	    bool inRadius(LinkedList<Guppy> &G);
+	    int eat(LinkedList<Guppy> &G);
 };
 
 #endif

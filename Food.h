@@ -3,43 +3,55 @@
 
 #include "Object.h"
 #include "Moveable.h"
+
+#include "Constant.h"
+
 using namespace std;
 
-class Food : public Object, Moveable{
-	
+class Food : public Object, public Moveable{
+
 	public:
-	
+
 		/*------------------------------------------------------------
-			 				Constructor & Destructor 	
+			 				Constructor & Destructor
 		------------------------------------------------------------*/
-	    
+
 		Food();
-	    ~Food();
-	    
+    	~Food();
+
 	    /*------------------------------------------------------------
 							 	Getter	Setter
 		------------------------------------------------------------*/
-		
+
 		int get_id();
-		int get_value();
-		
-		void set_value();
-		
+		void set_id(int);
+
+		// int get_type();
+		// int get_value();
+
+		// void set_value(int x);
+
+		int get_speed();
+		void set_speed(int);
+
 		/*------------------------------------------------------------
-									Method 	
+									Method
 		------------------------------------------------------------*/
-		
+
 	    void draw();
 	    void remove();
-	    void move();
+	    void move(double);
 
   	private:
-  		
+
   		int food_id;
-    	int food_type;
-    	int food_value;
-	
-	
+    	// int food_type;
+    	// int food_value;
+  		int food_speed;
+
+    	static int food_count;
+
+
 };
 
 

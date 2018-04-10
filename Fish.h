@@ -1,14 +1,16 @@
 #ifndef FISH_H
 #define FISH_H
 
+#include "Constant.h"
 #include "Object.h"
-#include "Food.h"
 #include "Coin.h"
 #include "Moveable.h"
 
 using namespace std;
 
-class Fish : public Object, Moveable {
+
+
+class Fish : public Object, public Moveable {
 
 	public:
   	
@@ -17,64 +19,72 @@ class Fish : public Object, Moveable {
 		------------------------------------------------------------*/
 	  	
 	  	//ctor
-	    Fish();
-	    
-		//dtor
-	    ~Fish();
-	    
-		//cctor
-	    Fish(const Fish&);
-	    
-		//operator assignment 
-	    Fish& operator=(const Fish& );
+	    Fish(int price, int cvalue);
 	    
 		/*------------------------------------------------------------
 								Getter	Setter
 		------------------------------------------------------------*/
 		
 		int get_id();
+
+		void set_id(int);
+		
 		int get_price();
-		int get_coin_value();
-		int get_hunger();
-		int get_speed();
-		
+
 		void set_price(int);
-		void set_coin_value(int);
-		void set_hunger(int);
-		void set_speed(int);
 		
+		int get_coin_value();
+
+		void set_coin_value(int);
+
+		double get_hunger();
+
+		void set_hunger(double);
+	
+		int get_speed();
+
+		void set_speed(int);
+
+		bool get_hungry();
+
+		void set_hungry(bool);
+
+		double get_time_move();
+
+		void set_time_move(double t);
+
+		const double get_max_hunger();
+		
+		void set_max_hunger(double);
 		/*------------------------------------------------------------
 									Method 
 		------------------------------------------------------------*/
+		//habis makan, hunger full lagi
+		void fullHunger();
 		
-		// draw on screen (GUI)
-	    virtual void draw();
-	    
-	    void remove();
-	    
-	    // merubah posisi x y ikan, mendekati makanan / bergerak bebas
-	    virtual void move() = 0;
-	    
-	    // membuat object coin dan memanggil aquarium.add_coin(coin&)
-	    virtual void produce_coin() = 0;
-	    
-	    // menambah hunger dan memanggil aquarium.remove_food(food&)
-	    virtual void eat() = 0;
-	    
-	    // mengecek apakah hunger = max hunger
-	    virtual bool isFull() = 0;
+		//decrease hunger 1 per timeframe
+		void makeHungry();
 
-  	protected:
+		//return true kalau lapar
+		bool isHungry();
+
+		//return true if ikan mati
+		bool isDead();
+
+  	private:
   		
-	  	int fish_id;
+  		int fish_id;
 	  	int fish_price;
 	    int coin_value;
-	    int hunger;
-	    int max_hunger;
+	    double hunger;
 	    int speed;
+	    bool hungry;
+	    double time_move;
+	    double max_hunger = FISH_MAX_HUNGER;
+
+	    static int fish_count; //jumlah ikan
+
 	    
-	    static int fish_count; // jumlah ikan (mungkin perlu)
-    
   	
   	
     

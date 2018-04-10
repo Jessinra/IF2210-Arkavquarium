@@ -60,6 +60,13 @@ void Aquarium::draw(){
 	for (int i = 1; i <= list_coin.getNBelmt(); i++){
 		list_coin.get(i).draw();
 	}
+
+	// draw aquarium
+	draw_image(FILE_aquarium, SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+
+	// tampilin uang
+	// tampilin telur
+	// tampilin button yang dapat digunakan
 }
 
 // Method to remove object (calling destructor)
@@ -127,4 +134,96 @@ void Aquarium::add_coin(Coin& coin){
 // called by Siput.collect_coin(), coin.touch_bottom()
 void Aquarium::remove_coin(Coin& coin){
 	list_coin.remove(coin);
+}
+
+void Aquarium::buy_guppy(){
+
+	// Money sufficient 
+	if (Aquarium::money >= GUPPY_PRICE){
+
+		Guppy *g = new Guppy();
+		add_guppy(*g);
+
+		Aquarium::money -= GUPPY_PRICE;
+
+	}
+
+	// unsufficient money
+	else{
+		cout << "money not enough" << endl;
+	}
+}
+
+
+void Aquarium::buy_piranha(){
+
+	// Money sufficient 
+	if (Aquarium::money >= PIRANHA_PRICE){
+
+		Piranha *p = new Piranha();
+		add_piranha(*p);
+
+		Aquarium::money -= PIRANHA_PRICE;
+
+	}
+
+	// unsufficient money
+	else{
+		cout << "money not enough" << endl;
+	}
+}
+
+
+void Aquarium::buy_food(){
+
+	// Money sufficient 
+	if (Aquarium::money >= FOOD_PRICE){
+		
+		Food *f = new Food();
+	    add_food(*f);
+
+	    Aquarium::money -= FOOD_PRICE;
+	}
+
+	// unsufficient money
+	else{
+		cout << "money not enough" << endl;
+	}
+}
+
+
+void Aquarium::buy_egg(){
+
+	// Money sufficient 
+	if (Aquarium::money >= EGG_PRICE){
+		
+		Aquarium::egg++;
+		Aquarium::money -= EGG_PRICE;
+	}
+
+	// unsufficient money
+	else{
+		cout << "money not enough" << endl;
+	}
+
+
+}
+
+
+void Aquarium::buy_snail(){
+
+	// Money sufficient 
+	if (Aquarium::money >= SIPUT_PRICE){
+
+		Siput *s = new Siput();
+        add_siput(*s);
+
+	    Aquarium::money -= SIPUT_PRICE;
+	}
+
+	// unsufficient money
+	else{
+		cout << "money not enough" << endl;
+	}
+
 }

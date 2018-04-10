@@ -20,8 +20,6 @@ class Moveable {
 		void set_y(double y);
 		void set_dir(string dir);
 
-		// handle object movement	
-		virtual void move() = 0;
 
 	private:
 
