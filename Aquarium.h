@@ -107,6 +107,7 @@ class Aquarium : public Object{
 		// Method to add food to tank
 		// method to run by main
 		void buy_food();
+		void buy_food(double x);
 
 		// Method to buy egg
 		// method to run by main

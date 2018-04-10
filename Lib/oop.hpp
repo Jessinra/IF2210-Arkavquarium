@@ -63,6 +63,14 @@ const std::set<SDL_Keycode>& get_pressed_keys();
 // handle_input() terakhir dipanggil.
 const std::set<SDL_Keycode>& get_tapped_keys();
 
+// Mengembalikan posisi mouse pada layar.
+int get_mouse_pos_x();
+int get_mouse_pos_y();
+// 0: left mouse.
+// 1: right mouse.
+bool get_mouse_button_down(int button);
+bool get_mouse_button(int button);
+bool get_mouse_button_up(int button);
 // ---------------------------------- WAKTU ----------------------------------
 
 // Mengembalikan waktu dari permulaan program dalam nilai detik (bisa pecahan).

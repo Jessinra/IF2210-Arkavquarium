@@ -15,7 +15,14 @@ Food::Food() {
     set_speed(FOOD_MOVEMENT_SPD);
 }
 
-Food::~Food() {}
+Food::Food(double x) {
+    set_y(SCREEN_TOP);
+    set_x(x);
+    Food::food_count++;
+    set_id(Food::food_count);
+    set_speed(FOOD_MOVEMENT_SPD);
+}
+
 
 int Food::get_id() {
     return food_id;
@@ -53,10 +60,6 @@ void Food::draw() {
     // draw food on screen
 
     draw_image(FILE_food,get_x(),get_y());
-}
-
-void Food::remove() {
-  
 }
 
 void Food::move(double sec_since_last) {

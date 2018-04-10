@@ -4,7 +4,7 @@
 using namespace std;
 
 int Aquarium::egg = 0;
-int Aquarium::money = 200;
+int Aquarium::money = 20000;
 
 Aquarium::Aquarium() {
 	Guppy *g = new Guppy();
@@ -185,6 +185,22 @@ void Aquarium::buy_food(){
 	if (Aquarium::money >= FOOD_PRICE){
 		
 		Food *f = new Food();
+	    add_food(*f);
+
+	    Aquarium::money -= FOOD_PRICE;
+	}
+
+	// unsufficient money
+	else{
+		cout << "money not enough" << endl;
+	}
+}
+
+void Aquarium::buy_food(double x) {
+	// Money sufficient 
+	if (Aquarium::money >= FOOD_PRICE){
+		
+		Food *f = new Food(x);
 	    add_food(*f);
 
 	    Aquarium::money -= FOOD_PRICE;

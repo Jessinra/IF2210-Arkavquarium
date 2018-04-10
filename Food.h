@@ -17,8 +17,8 @@ class Food : public Object, public Moveable{
 		------------------------------------------------------------*/
 
 		Food();
-    	~Food();
-
+		Food(double x);
+    	
 	    /*------------------------------------------------------------
 							 	Getter	Setter
 		------------------------------------------------------------*/
@@ -39,7 +39,6 @@ class Food : public Object, public Moveable{
 		------------------------------------------------------------*/
 
 	    void draw();
-	    void remove();
 	    void move(double);
 
 		bool operator==(Food&);

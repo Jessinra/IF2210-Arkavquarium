@@ -5,6 +5,7 @@
 #include <map>
 #include <iostream>
 #include <chrono>
+#include <SDL2/SDL2_rotozoom.h>
 
 using namespace std::chrono;
 
@@ -20,6 +21,17 @@ SDL_Window* sdlWindow;
 std::map<std::string, SDL_Surface*> loadedSurfaces;
 std::map<int, TTF_Font*> loadedFontSizes;
 SDL_Surface* gScreenSurface = NULL;
+
+/*
+0: left mouse down
+1: left mouse
+2: left mouse up
+3: right mouse down
+4: right mouse
+5: right mouse up
+*/
+char mouse_state[6] = {0, 0, 0, 0, 0, 0};
+int mouse_pos[2] = {0, 0};
 
 bool init()
 {
@@ -126,18 +138,53 @@ std::set<SDL_Keycode> tappedKeys;
 
 void handle_input() {
     SDL_Event e;
+    mouse_state[2]=0;
     if (!tappedKeys.empty()) tappedKeys.clear();
-    while( SDL_PollEvent( &e ) != 0 )
-        {
-            if ( e.type == SDL_QUIT ) {
-                quit = true;
-            } else if (e.type == SDL_KEYDOWN && !e.key.repeat) {
-                pressedKeys.insert(e.key.keysym.sym);
-                tappedKeys.insert(e.key.keysym.sym);
-            } else if (e.type == SDL_KEYUP) {
-                pressedKeys.erase(e.key.keysym.sym);
+    while( SDL_PollEvent( &e ) != 0 ) {
+        if ( e.type == SDL_QUIT ) {
+            quit = true;
+        } else if (e.type == SDL_KEYDOWN && !e.key.repeat) {
+            pressedKeys.insert(e.key.keysym.sym);
+            tappedKeys.insert(e.key.keysym.sym);
+        } else if (e.type == SDL_KEYUP) {
+            pressedKeys.erase(e.key.keysym.sym);
+        } else if (e.type == SDL_MOUSEBUTTONDOWN) {
+            switch (e.button.button)
+            {
+                case SDL_BUTTON_LEFT:
+                    if (!mouse_state[0]) {
+                        mouse_state[2] = 1;
+                    }
+                    mouse_state[0] = 1;
+                    break;
+                case SDL_BUTTON_RIGHT:
+                    if (!mouse_state[1]) {
+                        mouse_state[3] = 1;
+                    }
+                    mouse_state[1] = 1;
+                    break;
             }
+        } else if (e.type == SDL_MOUSEBUTTONUP) {
+            switch (e.button.button)
+            {
+                case SDL_BUTTON_LEFT:
+                    if (mouse_state[0]) {
+                        mouse_state[4] = 1;
+                    }
+                    mouse_state[0] = 0;
+                    break;
+                case SDL_BUTTON_RIGHT:
+                    if (mouse_state[1]) {
+                        mouse_state[5] = 1;
+                    }
+                    mouse_state[1] = 0;
+                    break;
+            }
+        } else if (e.type == SDL_MOUSEMOTION) {
+            mouse_pos[0] = e.motion.x;
+            mouse_pos[1] = e.motion.y;
         }
+    }
 }
 
 bool quit_pressed() {
@@ -150,4 +197,40 @@ const std::set<SDL_Keycode>& get_pressed_keys() {
 
 const std::set<SDL_Keycode>& get_tapped_keys() {
     return tappedKeys;
+}
+
+
+int get_mouse_pos_x() {
+    return mouse_pos[0];
+}
+
+int get_mouse_pos_y() {
+    return mouse_pos[1];
+}
+
+bool get_mouse_button_down(int button) {
+    if (button == 0) {
+        return mouse_state[2];
+    } else if (button == 1) {
+        return mouse_state[3];
+    }
+    return 0;
+}
+
+bool get_mouse_button(int button) {
+    if (button == 0) {
+        return mouse_state[0] && !mouse_state[2];
+    } else if (button == 1) {
+        return mouse_state[1] && !mouse_state[3];
+    }
+    return 0;
+}
+
+bool get_mouse_button_up(int button) {
+    if (button == 0) {
+        return mouse_state[4];
+    } else if (button == 1) {
+        return mouse_state[5];
+    }
+    return 0;
 }

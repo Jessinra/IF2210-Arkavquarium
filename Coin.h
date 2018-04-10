@@ -40,7 +40,6 @@ class Coin : public Object, public Moveable {
 		------------------------------------------------------------*/
 		
 		void draw();
-		void remove();
 		void move(double);
 
 		/**** operator overloading ****/
