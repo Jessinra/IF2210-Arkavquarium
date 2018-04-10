@@ -36,7 +36,7 @@ class Siput : public Pet {
         double euclidean(Coin C);
         int find_coin(LinkedList<Coin>& C);
         int inRadius(LinkedList<Coin>& C);
-        bool take_coin(LinkedList<Coin>& C);
+        int take_coin(LinkedList<Coin>& C);
 
 		/**** operator overloading ****/
 		Siput& operator=(Siput&);
