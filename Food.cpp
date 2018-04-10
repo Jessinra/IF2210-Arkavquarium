@@ -8,7 +8,7 @@ int Food::food_count = 0;
 
 Food::Food() {
     set_y(SCREEN_TOP);
-    int a = rand() % 1920 + 1;
+    int a = rand() % SCREEN_WIDTH + 1;
     set_x((double) a);
     Food::food_count++;
     set_id(Food::food_count);

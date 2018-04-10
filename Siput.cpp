@@ -5,7 +5,6 @@
 using namespace std;
 
 Siput::Siput() {
-    distance_to_coin = 0;
     set_speed(SIPUT_MOVEMENT_SPD);
     Moveable::set_dir("Right");
     Moveable::set_x(SCREEN_WIDTH/2);
@@ -110,7 +109,6 @@ int Siput::take_coin(LinkedList<Coin>& C) {
 Siput& Siput::operator=(Siput& s) {
     set_speed(SIPUT_MOVEMENT_SPD);
     set_dir(s.get_dir());
-    distance_to_coin = s.distance_to_coin;
 
     return *this;
 }

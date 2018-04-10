@@ -44,7 +44,6 @@ class Siput : public Pet {
 		bool operator!=(Siput&);
 
   	private:
-	  	double distance_to_coin;
         int speed;
 };
 
