@@ -1,4 +1,4 @@
-#include "LinkedList.h"
+
 #include "Siput.h"
 #include "Lib/oop.hpp"
 #include <iostream>
@@ -105,4 +105,21 @@ bool Siput::take_coin(LinkedList<Coin>& C) {
     } else {
         return false;
     }
+}
+
+
+Siput& Siput::operator=(Siput& s) {
+    set_speed(SIPUT_MOVEMENT_SPD);
+    set_dir(s.get_dir());
+    distance_to_coin = s.distance_to_coin;
+
+    return *this;
+}   
+
+bool Siput::operator==(Siput& s) {
+    return get_id() == s.get_id();
+}
+
+bool Siput::operator!=(Siput& s) {
+    return get_id() != s.get_id();
 }

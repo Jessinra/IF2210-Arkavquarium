@@ -17,6 +17,24 @@ Guppy::Guppy() : Fish(GUPPY_PRICE, GUPPY_COIN_VAL_01) {
 
 }
 
+Guppy& Guppy::operator=(Guppy& g) {
+	set_id(g.get_id());
+	set_x(g.get_x());
+	set_y(g.get_y());
+	set_price(g.get_price());
+	set_coin_value(g.get_coin_value());
+	set_hunger(g.get_hunger());
+	set_hungry(g.get_hungry());
+	set_dir(g.get_dir());
+	set_time_move(g.get_time_move());
+	set_speed(g.get_speed());
+	set_number_eat(g.get_number_eat());
+	set_timer(g.get_timer());
+	set_level(g.get_level());
+	
+	return *this;
+}
+
 /*------------------------------------------------------------
                         Getter	Setter
 ------------------------------------------------------------*/		
@@ -51,6 +69,15 @@ const int Guppy::get_max_level() {
 /*------------------------------------------------------------
                             Method  
 ------------------------------------------------------------*/ 
+
+bool Guppy::operator==(Guppy& g) {
+	return get_id() == g.get_id();
+}
+
+bool Guppy::operator!=(Guppy& g) {
+	return get_id() != g.get_id();
+}
+
 void Guppy::draw() {
 	// draw guppy on screen 
 

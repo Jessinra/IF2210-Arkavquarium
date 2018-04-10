@@ -42,6 +42,11 @@ class Coin : public Object, public Moveable {
 		void draw();
 		void remove();
 		void move(double);
+
+		/**** operator overloading ****/
+		Coin& operator=(Coin&);
+		bool operator==(Coin&);
+		bool operator!=(Coin&);
 	
 	private:
 		int coin_id;

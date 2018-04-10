@@ -10,6 +10,20 @@ Piranha::Piranha() : Fish(PIRANHA_PRICE, PIRANHA_COIN_VAL) {
 	set_speed(PIRANHA_MOVEMENT_SPD);
 }
 
+Piranha& Piranha::operator=(Piranha& g) {
+	set_id(g.get_id());
+	set_x(g.get_x());
+	set_y(g.get_y());
+	set_price(g.get_price());
+	set_coin_value(g.get_coin_value());
+	set_hunger(g.get_hunger());
+	set_hungry(g.get_hungry());
+	set_dir(g.get_dir());
+	set_time_move(g.get_time_move());
+	set_speed(g.get_speed());
+
+	return *this;
+}
 
 /*------------------------------------------------------------
 							Method 
@@ -164,4 +178,12 @@ int Piranha::eat(LinkedList<Guppy> &G) {
 
 		return -1;
 	}
+}
+
+bool Piranha::operator==(Piranha& g) {
+	return get_id() == g.get_id();
+}
+
+bool Piranha::operator!=(Piranha& g) {
+	return get_id() != g.get_id();
 }

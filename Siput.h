@@ -5,6 +5,8 @@
 #include "Coin.h"
 #include "Constant.h"
 #include "Moveable.h"
+#include "LinkedList.h"
+
 
 using namespace std;
 
@@ -36,6 +38,11 @@ class Siput : public Pet {
         int find_coin(LinkedList<Coin>& C);
         int inRadius(LinkedList<Coin>& C);
         bool take_coin(LinkedList<Coin>& C);
+
+		/**** operator overloading ****/
+		Siput& operator=(Siput&);
+		bool operator==(Siput&);
+		bool operator!=(Siput&);
 
   	private:
 	  	double distance_to_coin;

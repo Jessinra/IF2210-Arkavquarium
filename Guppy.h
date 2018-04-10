@@ -19,7 +19,9 @@ class Guppy : public Fish {
 		------------------------------------------------------------*/
 		
 	    Guppy();
-	    
+	    Guppy& operator=(Guppy&);
+
+
 		/*------------------------------------------------------------
 									Getter  
 		------------------------------------------------------------*/
@@ -41,6 +43,8 @@ class Guppy : public Fish {
 								Method  	
 		------------------------------------------------------------*/
 		
+		bool operator==(Guppy&);
+		bool operator!=(Guppy&);
 	    void draw();
 	    bool produce_coin();
 	    int findFood(LinkedList<Food>& F);

@@ -75,3 +75,21 @@ void Coin::move(double sec_since_last) {
         set_y(get_y() - (get_speed() * sec_since_last));
     }
 }
+
+
+Coin& Coin::operator=(Coin& s) {
+    set_x(s.get_x());
+    set_y(s.get_y());
+
+    set_id(s.get_id());
+    set_value(s.get_value());
+    set_speed(COIN_MOVEMENT_SPD);
+}   
+
+bool Coin::operator==(Coin& s) {
+    return get_id() == s.get_id();
+}
+
+bool Coin::operator!=(Coin& s) {
+    return get_id() != s.get_id();
+}

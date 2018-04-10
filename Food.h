@@ -42,6 +42,9 @@ class Food : public Object, public Moveable{
 	    void remove();
 	    void move(double);
 
+		bool operator==(Food&);
+		bool operator!=(Food&);		
+
   	private:
 
   		int food_id;

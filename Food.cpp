@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-Food::food_count = 0;
+int Food::food_count = 0;
 
 Food::Food() {
   
@@ -63,4 +63,13 @@ void Food::move(double sec_since_last) {
         // move coin towards bottom of the tank
         set_y(get_y() - (get_speed() * sec_since_last));
     }
+}
+
+
+bool Food::operator==(Food& s) {
+    return get_id() == s.get_id();
+}
+
+bool Food::operator!=(Food& s) {
+    return get_id() != s.get_id();
 }

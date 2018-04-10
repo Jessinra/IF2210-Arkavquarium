@@ -19,11 +19,14 @@ class Piranha : public Fish {
 		------------------------------------------------------------*/	
 		
 		Piranha();
+	    Piranha& operator=(Piranha&);
 		
 		/*------------------------------------------------------------
 									Method 
 		------------------------------------------------------------*/
 		
+		bool operator==(Piranha&);
+		bool operator!=(Piranha&);
 	    void draw();
 	    int findGuppy(LinkedList<Guppy> &G);
 	    void move(double sec_since_last,LinkedList<Guppy> &G);

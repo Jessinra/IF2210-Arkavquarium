@@ -23,9 +23,9 @@ public:
 
 	// method
 	bool isEmpty() const;
-	void add(const T&);
-	void remove(const T&);		// menghapus element dengan identitas demikian yang paling pertama
-	int find(const T&);			// mengembalikan indeks element dengan identitas demikian yang paling pertama. bila tidak ada return -1
+	void add(T&);
+	void remove(T&);		// menghapus element dengan identitas demikian yang paling pertama
+	int find(T&);			// mengembalikan indeks element dengan identitas demikian yang paling pertama. bila tidak ada return -1
 	T get(const int&);			// dipastikan ada
 	void printList() const;		// print isi list dengan format [1,2,...,n]
 	int getNBelmt() const;		// get number of element in list		
@@ -51,8 +51,6 @@ public:
 
 	Node *head;
 };
-
-#endif
 
 // implementasi
 template <class T>
@@ -115,7 +113,7 @@ bool LinkedList<T>::isEmpty() const {
 }
 
 template <class T>
-void LinkedList<T>::add(const T& t) {
+void LinkedList<T>::add(T& t) {
 	if (!isEmpty()) {	
 		Node *i = head;
 
@@ -139,7 +137,7 @@ void LinkedList<T>::add(const T& t) {
 }
 
 template <class T>
-void LinkedList<T>::remove(const T& t) {
+void LinkedList<T>::remove(T& t) {
 	if (head->value == t) {
 		Node *temp = head;
 		head = temp->next;
@@ -159,7 +157,7 @@ void LinkedList<T>::remove(const T& t) {
 }
 
 template <class T>
-int LinkedList<T>::find(const T& t) {
+int LinkedList<T>::find(T& t) {
 	if (!isEmpty()) {
 		Node *del = head;
 		int idx = 1;
@@ -191,7 +189,6 @@ T LinkedList<T>::get(const int& idx) {
 			return n->value;
 		}
 	}
-	return 0;
 }
 
 template <class T>
@@ -227,3 +224,6 @@ int LinkedList<T>::getNBelmt() const {
 		return 0;
 	}
 }
+
+
+#endif
