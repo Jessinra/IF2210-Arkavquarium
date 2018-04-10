@@ -51,7 +51,7 @@ class Fish : public Object, public Moveable {
 
 		double get_time_move();
 
-		void set_time_move(double t);
+		void set_time_move(double);
 
 		int get_x_move();
 
@@ -70,7 +70,7 @@ class Fish : public Object, public Moveable {
 		//habis makan, hunger full lagi
 		void fullHunger();
 		
-		//decrease hunger 1 per timeframe
+		//decrease hunger periodically
 		void makeHungry();
 
 		//return true kalau lapar
