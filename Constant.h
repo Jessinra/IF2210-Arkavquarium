@@ -19,11 +19,11 @@ const int PIRANHA_COIN_VAL = GUPPY_PRICE;	 //harga ikan
 
 const double GUPPY_DROP_COIN_TIME = 10;
 
-const double FISH_TIMER_DEC = 0.05;
+const double FISH_TIMER_DEC = 0.1;
 const double FISH_MAX_HUNGER = 20;
 const double FISH_HUNGRY_BORDERLINE = 10; // Fish getting hungry below this point
-const double FISH_HUNGER_DECREASE_RATE = 0.0001;
-const double FISH_MAX_TIMER = 2;
+const double FISH_HUNGER_DECREASE_RATE = 0.01;
+const double FISH_MAX_TIMER = 1;
 
 const int GUPPY_MAX_LV = 3;
 const int GUPPY_REQ_FOOD_COUNT = 5;		// how many food needed to lvl up
@@ -35,10 +35,10 @@ const int COIN_MOVEMENT_SPD = 50;
 const int SIPUT_MOVEMENT_SPD = 10000;
 const int FOOD_MOVEMENT_SPD = 50;
 
-const int SCREEN_TOP = 100;
-const int SCREEN_BOTTOM = SCREEN_HEIGHT - 150;
-const int SCREEN_LEFT = 10;
-const int SCREEN_RIGHT = SCREEN_WIDTH - 10;
+const int SCREEN_TOP = 80;
+const int SCREEN_BOTTOM = SCREEN_HEIGHT - 80;
+const int SCREEN_LEFT = 80;
+const int SCREEN_RIGHT = SCREEN_WIDTH - 80;
 
 
 
