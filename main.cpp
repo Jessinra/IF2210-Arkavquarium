@@ -51,6 +51,8 @@ int main(int argc, char* args[]) {
         if (quit_pressed()) {
             running = false;
         }
+        
+        cout << " mouse pos " << get_mouse_pos_x() << "," <<  get_mouse_pos_y() << endl;
 
         // Command List
         // beli guppy   : G
@@ -126,6 +128,11 @@ int main(int argc, char* args[]) {
                     cx += speed * sec_since_last;
                     break;
             }
+        }
+
+        // beli makan
+        if (get_mouse_button_down(0)) {
+            aquarium.buy_food(get_mouse_pos_x());
         }
 
 
@@ -256,6 +263,10 @@ int main(int argc, char* args[]) {
             // draw every faking thing (fish, coin, food, piranha, siput, money, egg count ,command ) 
             clear_screen();
             aquarium.draw();
+            string egg = to_string(Aquarium::egg);
+            string money = to_string(Aquarium::money);
+            
+            //draw_text(money, 18, 10, 30, 0, 0, 0);
             update_screen();
             
             //usleep(100000);
