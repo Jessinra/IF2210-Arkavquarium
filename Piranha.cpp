@@ -138,7 +138,7 @@ double Piranha::euclidean(Guppy &g) {
 	return (sqrt(pow(x_piranha-x_guppy, 2)) + (pow(y_piranha-y_guppy, 2)));
 }
 
-bool Piranha::inRadius(LinkedList<Guppy> &G) {
+int Piranha::inRadius(LinkedList<Guppy> &G) {
 
 	int idx = 1;
 	double radius = 150;

@@ -30,7 +30,7 @@ class Piranha : public Fish {
 	    int findGuppy(LinkedList<Guppy> &G);
 	    void move(double sec_since_last,LinkedList<Guppy> &G);
 	    double euclidean(Guppy &g);
-	    bool inRadius(LinkedList<Guppy> &G);
+	    int inRadius(LinkedList<Guppy> &G);
 	    int eat(LinkedList<Guppy> &G);
 };
 
