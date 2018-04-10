@@ -38,8 +38,8 @@ void Siput::move(double sec_since_last, LinkedList<Coin>& C) {
             int idx = inRadius(C);
             cout << "siput move " << Moveable::get_x() << "," << Moveable::get_y() << endl;
             // set siput x , to
-            double a = atan2(C.get(idx).(Moveable::get_x()) - Moveable::get_x(), C.get(idx).(Moveable::get_y()) - Moveable::get_y());
-            Moveable::set_x(Moveable::get_x() - Pet::get_speed() * cos(a) * sec_since_last);
+            double a = atan2(C.get(idx).Moveable::get_x() - Moveable::get_x(), C.get(idx).Moveable::get_y() - Moveable::get_y());
+            Moveable::set_x(Moveable::get_x() - get_speed() * cos(a) * sec_since_last);
             cout << "siput move " << Moveable::get_x() << "," << Moveable::get_y() << endl;
         }
     }
@@ -99,8 +99,9 @@ int Siput::take_coin(LinkedList<Coin>& C) {
 
     if (idx != -999) {
         //remove coin from list
+        int value = C.get(idx).get_value();
         C.remove(C.get(idx));
-        return C.get_value();
+        return value;
     } else {
         return 0;
     }
