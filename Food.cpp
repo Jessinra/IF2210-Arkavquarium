@@ -1,14 +1,18 @@
 #include "Food.h"
 #include "Lib/oop.hpp"
 #include <iostream>
+#include <random>
 using namespace std;
 
 int Food::food_count = 0;
 
 Food::Food() {
-  
+    set_y(SCREEN_TOP);
+    int a = rand() % 1920 + 1;
+    set_x((double) a);
     Food::food_count++;
     set_id(Food::food_count);
+    set_speed(FOOD_MOVEMENT_SPD);
 }
 
 Food::~Food() {}
@@ -59,9 +63,10 @@ void Food::move(double sec_since_last) {
     
     // if food is not on bottom yet, 
     if (get_y() <= SCREEN_BOTTOM) {
-
+        cout << "Food move" << get_x() << "," << get_y() << endl;
         // move coin towards bottom of the tank
-        set_y(get_y() - (get_speed() * sec_since_last));
+        set_y(get_y() + (get_speed() * sec_since_last));
+        cout << "Food move" << get_x() << "," << get_y() << endl;
     }
 }
 

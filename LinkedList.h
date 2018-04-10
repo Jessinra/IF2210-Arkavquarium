@@ -26,7 +26,7 @@ public:
 	void add(T&);
 	void remove(T&);		// menghapus element dengan identitas demikian yang paling pertama
 	int find(T&);			// mengembalikan indeks element dengan identitas demikian yang paling pertama. bila tidak ada return -1
-	T get(const int&);			// dipastikan ada
+	T& get(int&);			// dipastikan ada
 	void printList() const;		// print isi list dengan format [1,2,...,n]
 	int getNBelmt() const;		// get number of element in list		
 
@@ -175,7 +175,7 @@ int LinkedList<T>::find(T& t) {
 }
 
 template <class T>
-T LinkedList<T>::get(const int& idx) {
+T& LinkedList<T>::get(int& idx) {
 	if (!isEmpty()) {
 		int i = 1;
 		Node *n = head;

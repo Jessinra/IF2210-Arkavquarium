@@ -1,4 +1,5 @@
 #include "Guppy.h"
+#include <iostream>
 #include <cmath>
 
 using namespace std;
@@ -80,7 +81,7 @@ bool Guppy::operator!=(Guppy& g) {
 
 void Guppy::draw() {
 	// draw guppy on screen 
-
+	
 	if (Fish::isHungry()) {
 			if (level_grow == 1) {
 				if (Moveable::get_dir() == "Left") {
@@ -108,6 +109,7 @@ void Guppy::draw() {
 			}
 	}
 	else {
+			
 			if (level_grow == 1) {
 				if (Moveable::get_dir() == "Left") {
 					draw_image(FILE_guppy_01_left, get_x(), get_y());
@@ -171,18 +173,19 @@ int Guppy::findFood(LinkedList<Food>& F) {
 	return idx;
 }
 
-void Guppy::move(double sec_since_last,LinkedList<Food> F) {
+void Guppy::move(double sec_since_last,LinkedList<Food> &F) {
 
 	double x;
 	double y;
-
+	cout << "move ga ya" << sec_since_last << endl;
 	if (Fish::isHungry()) {
 		//mengejar food pakai tips
-
-		int idx = findFood(F);
-		double a = atan2(F.get(idx).get_x()-get_x(), F.get(idx).get_y()-get_y());
-		set_x(get_x()+Fish::get_speed()*cos(a)*sec_since_last);
-		set_y(get_y()+Fish::get_speed()*sin(a)*sec_since_last);
+		if (F.getNBelmt() > 0) {
+			int idx = findFood(F);
+			double a = atan2(F.get(idx).get_x()-get_x(), F.get(idx).get_y()-get_y());
+			set_x(get_x()+Fish::get_speed()*cos(a)*sec_since_last);
+			set_y(get_y()+Fish::get_speed()*sin(a)*sec_since_last);
+		}
 	}
 	else {
 		if (Fish::get_time_move() == 0 || get_x() == SCREEN_LEFT || get_y() == SCREEN_TOP || get_x() == SCREEN_RIGHT || get_y() == SCREEN_BOTTOM) {
@@ -206,8 +209,11 @@ void Guppy::move(double sec_since_last,LinkedList<Food> F) {
 			Fish::set_time_move(Fish::get_time_move()-FISH_TIMER_DEC);
 		}
 		if ((get_x() > SCREEN_LEFT) && (get_x() < SCREEN_RIGHT) && (get_y() > SCREEN_TOP) && (get_y() < SCREEN_BOTTOM)) {
-			set_x(get_x()+Fish::get_speed()*sec_since_last*x);
-			set_y(get_y()+Fish::get_speed()*sec_since_last*y);
+			cout << "jlan ga sih " << endl;
+			cout << get_x() << "," << get_y() << endl;
+			set_x(get_x()+Fish::get_speed()*sec_since_last);
+			set_y(get_y()+Fish::get_speed()*sec_since_last);
+			cout << get_x() << "," << get_y() << endl;
 		}
 		else {
 			if (get_x() == SCREEN_LEFT) {

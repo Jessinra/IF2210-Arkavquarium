@@ -3,7 +3,6 @@
 
 #include "Fish.h"
 #include "Food.h"
-#include "Aquarium.h"
 #include "LinkedList.h"
 
 #include "Constant.h"
@@ -48,7 +47,7 @@ class Guppy : public Fish {
 	    void draw();
 	    bool produce_coin();
 	    int findFood(LinkedList<Food>& F);
-	    void move(double sec_since_last,LinkedList<Food> F);
+	    void move(double sec_since_last,LinkedList<Food>& F);
 	    double euclidean(Food& m);
 	    int inRadius(LinkedList<Food>& F);
 	    void eat(LinkedList<Food>& F);

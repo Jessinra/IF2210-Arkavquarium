@@ -72,7 +72,7 @@ void Coin::move(double sec_since_last) {
     if (get_y() <= SCREEN_BOTTOM) {
 
         // move coin towards bottom of the tank
-        set_y(get_y() - (get_speed() * sec_since_last));
+        set_y(get_y()+(get_speed() * sec_since_last));
     }
 }
 
@@ -84,6 +84,8 @@ Coin& Coin::operator=(Coin& s) {
     set_id(s.get_id());
     set_value(s.get_value());
     set_speed(COIN_MOVEMENT_SPD);
+
+    return *this;
 }   
 
 bool Coin::operator==(Coin& s) {

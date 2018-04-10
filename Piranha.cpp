@@ -73,10 +73,12 @@ void Piranha::move(double sec_since_last,LinkedList<Guppy>& G) {
 
 	if (Fish::isHungry()) {
 		//mengejar food pakai tips
-		int idx = findGuppy(G);
-		double a = atan2(G.get(idx).get_x()-get_x(), G.get(idx).get_y()-get_y());
-		set_x(get_x()+Fish::get_speed()*cos(a)*sec_since_last);
-		set_y(get_y()+Fish::get_speed()*sin(a)*sec_since_last);
+		if (G.getNBelmt() > 0) {
+			int idx = findGuppy(G);
+			double a = atan2(G.get(idx).get_x()-get_x(), G.get(idx).get_y()-get_y());
+			set_x(get_x()+Fish::get_speed()*cos(a)*sec_since_last);
+			set_y(get_y()+Fish::get_speed()*sin(a)*sec_since_last);
+		}
 	}
 
 	else {

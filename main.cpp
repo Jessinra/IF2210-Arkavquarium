@@ -3,9 +3,11 @@
 #include "Guppy.h"
 #include "Piranha.h"
 #include "Siput.h"
+#include <unistd.h>
 
 #include <math.h>
 #include <sstream>
+#include <iostream>
 using namespace std;
 
 // pixels per second
@@ -31,6 +33,9 @@ int main(int argc, char* args[]) {
     double cx = SCREEN_WIDTH/2;
     double cy = 20;
 
+    int ct = 1;
+    cout << ct++ << endl;
+
     /*******        main loop            *******/
     while (running) {
 
@@ -38,6 +43,7 @@ int main(int argc, char* args[]) {
         double sec_since_last = now - prevtime;
         prevtime = now;
 
+        cout << ct++ << endl;
         /********* cek input keyboard *********/
 
         // jangan lupa validasi uang & kurangin uang
@@ -93,6 +99,8 @@ int main(int argc, char* args[]) {
             }
         }
 
+        cout << ct++ << endl; //3
+
         // cursor dan gerakan cursor
         for (auto key : get_pressed_keys()) {
 
@@ -120,10 +128,12 @@ int main(int argc, char* args[]) {
             }
         }
 
+
+        cout << ct++ << endl; //4
         /******* pengecekan *******/
 
         // cek jumlah ikan u/ menang/kalah
-        if ((aquarium.get_list_guppy().getNBelmt() == 0) && (aquarium.get_list_piranha().getNBelmt() == 0 ) && (aquarium::money < guppy_price)) {
+        if ((aquarium.get_list_guppy().getNBelmt() == 0) && (aquarium.get_list_piranha().getNBelmt() == 0 ) && (Aquarium::money < GUPPY_PRICE)) {
             running = false;
         } 
 
@@ -135,11 +145,11 @@ int main(int argc, char* args[]) {
 
         // game still continue
         else {
-
+            cout << ct++ << endl; //5
             // iterasi list guppy
             for (int i = 1; i <= aquarium.get_list_guppy().getNBelmt(); i++) {
-
-                Guppy current_guppy = aquarium.get_list_guppy().get(i);
+                cout << ct++ << endl; //6
+                Guppy &current_guppy = aquarium.get_list_guppy().get(i);
 
                 // cek mati 
                 if (current_guppy.get_hunger() < 0) {
@@ -148,10 +158,10 @@ int main(int argc, char* args[]) {
                     i--;
 
                 } else {
-
+                    cout << "?" << endl;
                     // move fish
-                    current_guppy.move(sec_since_last, aquarium.get_list_food);
-                
+                    current_guppy.move(sec_since_last, aquarium.get_list_food());
+                    cout << "a" << endl;
                     // check to drop coin & reduce timer
                     if(current_guppy.produce_coin()){
 
@@ -159,20 +169,20 @@ int main(int argc, char* args[]) {
                         aquarium.add_coin(*c);
 
                     }
-
+                    cout << "makan" << endl;
                     // cek untuk makan
-                    current_guppy.eat(aquarium.get_list_food);
-
+                    current_guppy.eat(aquarium.get_list_food());
+                    cout << "hunger" << endl;
                     // ngurangin hunger
                     current_guppy.makeHungry();
                     
                 }
             }
-
+            cout << ct++ << endl; //7
             // iterasi list piranha
             for (int i = 1; i <= aquarium.get_list_piranha().getNBelmt(); i++) {
                 
-                Piranha current_piranha = aquarium.get_list_piranha().get(i);
+                Piranha &current_piranha = aquarium.get_list_piranha().get(i);
 
                 // cek mati
                 if (current_piranha.get_hunger() < 0) {
@@ -183,10 +193,10 @@ int main(int argc, char* args[]) {
                 } else {
 
                     // move fish
-                    current_piranha.move(sec_since_last);
+                    current_piranha.move(sec_since_last, aquarium.get_list_guppy());
                 
                     // cek untuk makan
-                    int eaten_lv = current_piranha.eat(aquarium.get_list_guppy);
+                    int eaten_lv = current_piranha.eat(aquarium.get_list_guppy());
 
                     // check drop coin
                     if (eaten_lv > 0){
@@ -201,50 +211,56 @@ int main(int argc, char* args[]) {
 
                 }
             }
-
+            cout << ct++ << endl; //8
             // iterasi list coin
             for (int i = 1; i <= aquarium.get_list_coin().getNBelmt(); i++) {
 
-                Coin current_coin = aquarium.get_list_coin().get(i);
+                Coin &current_coin = aquarium.get_list_coin().get(i);
 
                 // move coin
                 current_coin.move(sec_since_last);
 
             }
-                
+            cout << ct++ << endl; //9
             // iterasi list makanan
             for (int i = 1; i <= aquarium.get_list_food().getNBelmt(); i++) {
 
-                Food current_food = aquarium.get_list_food().get(i);
+                Food &current_food = aquarium.get_list_food().get(i);
 
                 // remove food that touch the bottom
-                if(current_food.get_y() >= SCREEN_BOTTOM){
+                if (current_food.get_y() >= SCREEN_BOTTOM){
                     aquarium.remove_food(current_food);
                     i--;
                 }
                 
                 // move food
                 current_food.move(sec_since_last);
-
-
-
             }
+
+            cout << ct++ << endl; //10
 
             // iterasi list siput
             for (int i = 1; i <= aquarium.get_list_siput().getNBelmt(); i++) {
 
-                Siput current_siput = aquarium.get_list_siput().get(i);
+                Siput &current_siput = aquarium.get_list_siput().get(i);
 
                 // move siput
-                current_siput.move(sec_since_last);
+                current_siput.move(sec_since_last,aquarium.get_list_coin());
 
                 // get coin
                 // current_siput.take_coin();
 
             }
 
+            cout << ct++ << endl;//11
             // draw every faking thing (fish, coin, food, piranha, siput, money, egg count ,command ) 
-            aquarium.draw()  
+            clear_screen();
+            aquarium.draw();
+            update_screen();
+            
+            //usleep(100000);
         }
     }
+
+    close();
 }

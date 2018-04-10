@@ -1,4 +1,4 @@
-
+#include "LinkedList.h"
 #include "Siput.h"
 #include "Lib/oop.hpp"
 #include <iostream>
@@ -8,6 +8,10 @@ Siput::Siput() {
     distance_to_coin = 0;
     set_speed(SIPUT_MOVEMENT_SPD);
     set_dir("Right");
+    
+    Moveable::set_x(SCREEN_WIDTH/2);
+    Moveable::set_y(SCREEN_BOTTOM);
+
 }
 
 int Siput::get_speed() {
@@ -20,9 +24,6 @@ void Siput::set_speed(int x) {
 
 void Siput::draw() {
 
-    Moveable::set_x(0);
-    Moveable::set_y(0);
-
     // draw siput on screen
     if (Moveable::get_dir() == "Left"){
         draw_image(FILE_siput_left, get_x(), get_y());
@@ -32,15 +33,18 @@ void Siput::draw() {
 }
 
 void Siput::move(double sec_since_last, LinkedList<Coin>& C) {
-
-    if (get_y() == SCREEN_BOTTOM && inRadius(C) != -999) {
-
+    cout << "siput move " << get_x() << "," << get_y() << endl;
+    if (inRadius(C) != -999) {
+        cout << C.getNBelmt() << endl;
         // get the x value of nearest coin
-        int idx = inRadius(C);
-
-        // set siput x , to
-        double a = atan2(C.get(idx).get_x() - get_x(), C.get(idx).get_y() - get_y());
-        set_x(get_x()+ get_speed() * cos(a) * sec_since_last);
+        if (C.getNBelmt() > 0) {
+            int idx = inRadius(C);
+            cout << "siput move " << get_x() << "," << get_y() << endl;
+            // set siput x , to
+            double a = atan2(C.get(idx).get_x() - get_x(), C.get(idx).get_y() - get_y());
+            set_x(get_x() + get_speed() * cos(a) * sec_since_last);
+            cout << "siput move " << get_x() << "," << get_y() << endl;
+        }
 
     }
 }
@@ -63,7 +67,7 @@ int Siput::inRadius(LinkedList<Coin>& C) {
     bool find = false;
     while (!find && idx < C.getNBelmt()) {
 
-        if (radius > euclidean(C.get(idx))) {
+        if (radius < euclidean(C.get(idx))) {
             find = true;
         } else {
             idx++;

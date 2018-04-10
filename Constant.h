@@ -29,13 +29,14 @@ const int GUPPY_MAX_LV = 3;
 const int GUPPY_REQ_FOOD_COUNT = 5;		// how many food needed to lvl up
 const int GUPPY_HUNGER_INCREASE_RATE = 10;
 
-const int GUPPY_MOVEMENT_SPD = 50;
-const int PIRANHA_MOVEMENT_SPD = 50;
-const int COIN_MOVEMENT_SPD = 10;
-const int SIPUT_MOVEMENT_SPD = 50;
+const int GUPPY_MOVEMENT_SPD = 100;
+const int PIRANHA_MOVEMENT_SPD = 150;
+const int COIN_MOVEMENT_SPD = 50;
+const int SIPUT_MOVEMENT_SPD = 10000;
+const int FOOD_MOVEMENT_SPD = 50;
 
-const int SCREEN_TOP = 50;
-const int SCREEN_BOTTOM = SCREEN_HEIGHT - 50;
+const int SCREEN_TOP = 100;
+const int SCREEN_BOTTOM = SCREEN_HEIGHT - 150;
 const int SCREEN_LEFT = 10;
 const int SCREEN_RIGHT = SCREEN_WIDTH - 10;
 
@@ -73,7 +74,7 @@ const string FILE_coin = "img/coin.png";
 
 const string FILE_food = "img/food.png";
 
-const string FILE_aquarium = "img/aquarium.png";
+const string FILE_aquarium = "img/Aquarium2.jpg";
 
 
 #endif

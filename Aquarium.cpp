@@ -1,4 +1,5 @@
 #include "Aquarium.h"
+#include <iostream>
 
 using namespace std;
 
@@ -38,7 +39,11 @@ LinkedList<Coin>& Aquarium::get_list_coin(){
 
 // draw on screen (GUI)
 void Aquarium::draw(){
+	
+	draw_image(FILE_aquarium, SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+	
 	for (int i = 1; i <= list_guppy.getNBelmt(); i++){
+		
 		list_guppy.get(i).draw();
 	}
 
@@ -46,23 +51,23 @@ void Aquarium::draw(){
 		list_piranha.get(i).draw();
 	}
 
-	LinkedList<Siput> list_siput = get_list_siput();
+	cout << "drawsiput" << endl;
 	for (int i = 1; i <= list_siput.getNBelmt(); i++){
 		list_siput.get(i).draw();
 	}
 
-	LinkedList<Food> list_food = get_list_food();
 	for (int i = 1; i <= list_food.getNBelmt(); i++){
 		list_food.get(i).draw();
 	}
 
-	LinkedList<Coin> list_coin = get_list_coin();
 	for (int i = 1; i <= list_coin.getNBelmt(); i++){
 		list_coin.get(i).draw();
 	}
 
+	cout << "draw" << endl;
+
 	// draw aquarium
-	draw_image(FILE_aquarium, SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+	
 
 	// tampilin uang
 	// tampilin telur
