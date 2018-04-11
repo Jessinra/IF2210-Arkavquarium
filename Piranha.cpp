@@ -81,8 +81,8 @@ void Piranha::move(double sec_since_last,LinkedList<Guppy>& G) {
 			set_dir("Right");
 		}
 		double a = atan2(G.get(idx).get_y()-get_y(), G.get(idx).get_x()-get_x());
-		set_x(get_x()+Fish::get_speed()*cos(a)*sec_since_last);
-		set_y(get_y()+Fish::get_speed()*sin(a)*sec_since_last);
+		set_x(get_x()+(double)(Fish::get_speed()*cos(a)*sec_since_last*1.5));
+		set_y(get_y()+(double)(Fish::get_speed()*sin(a)*sec_since_last*1.5));
 	}
 	else {
 		//random arahnya
