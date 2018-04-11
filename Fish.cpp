@@ -29,6 +29,7 @@ int Fish::fish_count = 0;
 		set_hungry(false);
 		Moveable::set_dir("Right");
 		time_move = FISH_MAX_TIMER;
+		//cout << time_move << "waktu time_move" << endl;
 	}
 
 		/*------------------------------------------------------------
@@ -88,6 +89,22 @@ int Fish::fish_count = 0;
 
 	void Fish::set_time_move(double t) {
 		time_move = t;
+	}
+
+	int Fish::get_x_move() {
+		return x_move;
+	}
+
+	void Fish::set_x_move(int x) {
+		x_move = x;
+	}
+
+	int Fish::get_y_move() {
+		return y_move;
+	}
+
+	void Fish::set_y_move(int y) {
+		y_move = y;
 	}
 
 	const double Fish::get_max_hunger() {

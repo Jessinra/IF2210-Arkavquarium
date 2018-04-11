@@ -25,6 +25,8 @@ class Siput : public Pet {
 
 		int get_speed();
         void set_speed(int x);
+		int get_distance_to_coin();
+	void set_distance_to_coin();
 
 
 		/*------------------------------------------------------------
@@ -34,9 +36,9 @@ class Siput : public Pet {
         void draw();
         void move(double sec_since_last, LinkedList<Coin>& C);
         double euclidean(Coin C);
-        int find_coin(LinkedList<Coin>& C);
+        bool find_coin(LinkedList<Coin>& C);
         int inRadius(LinkedList<Coin>& C);
-        bool take_coin(LinkedList<Coin>& C);
+        int take_coin(LinkedList<Coin>& C);
 
 		/**** operator overloading ****/
 		Siput& operator=(Siput&);

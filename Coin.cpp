@@ -73,6 +73,8 @@ void Coin::move(double sec_since_last) {
 
         // move coin towards bottom of the tank
         set_y(get_y()+(get_speed() * sec_since_last));
+    } else {
+        set_y(SCREEN_BOTTOM);
     }
 }
 

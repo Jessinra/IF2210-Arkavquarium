@@ -74,11 +74,6 @@ void Aquarium::draw(){
 	// tampilin button yang dapat digunakan
 }
 
-// Method to remove object (calling destructor)
-void Aquarium::remove() {
-
-}
-	
 
 // Method to add guppy to tank 
 // called by guppy.create() 
@@ -247,4 +242,50 @@ void Aquarium::buy_snail(){
 		cout << "money not enough" << endl;
 	}
 
+}
+
+
+double Aquarium::euclidean(double x, double y, Coin c) {
+    // get euclidean distance to coin
+
+    double x_coin = c.get_x();
+    double y_coin = c.get_y();
+
+    return (sqrt(pow(x-x_coin, 2)) + (pow(y-y_coin, 2)));
+}
+
+
+int Aquarium::inRadius(double x, double y) {
+    
+    int idx = 1;
+    int nearest;
+    double radius = 1;
+    bool find = false;
+
+	nearest = get_list_coin().get(idx).get_x();
+	while (idx+1 < get_list_coin().getNBelmt()) {
+	    if (euclidean(x,y,get_list_coin().get(idx)) < nearest) {
+		    nearest = euclidean(x,y,get_list_coin().get(idx));
+		    radius = idx;
+		}
+	    else {
+			idx++;
+	    }
+	}
+    
+    // return id coin yg di dalam radius
+    return radius;
+}
+
+
+void Aquarium::click_coin(double x, double y) {
+    //find coin in radius
+    if (get_list_coin().getNBelmt() > 0) {
+        int idx = inRadius(x,y);
+        if (get_list_coin().get(idx).get_x() >= x - 30 && get_list_coin().get(idx).get_x() <= x + 30 && get_list_coin().get(idx).get_y() >= y-30 && get_list_coin().get(idx).get_y() <= y+30) {
+            int value = get_list_coin().get(idx).get_value();
+            get_list_coin().remove(get_list_coin().get(idx));
+            Aquarium::money += value;
+        }
+    }
 }

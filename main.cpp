@@ -250,11 +250,11 @@ int main(int argc, char* args[]) {
             for (int i = 1; i <= aquarium.get_list_siput().getNBelmt(); i++) {
 
                 Siput &current_siput = aquarium.get_list_siput().get(i);
-
+                cout << "siput gerak" << endl;
                 // move siput
                 current_siput.move(sec_since_last,aquarium.get_list_coin());
-
                 // get coin
+                Aquarium::money += current_siput.take_coin(aquarium.get_list_coin());
                 // current_siput.take_coin();
 
             }
@@ -266,7 +266,8 @@ int main(int argc, char* args[]) {
             string egg = to_string(Aquarium::egg);
             string money = to_string(Aquarium::money);
             
-            //draw_text(money, 18, 10, 30, 0, 0, 0);
+            draw_text("Money  " + money, 18, 10, 10, 0, 0, 0);
+            draw_text("Egg    " + egg, 18, 10, 30, 0, 0, 0);
             update_screen();
             
             //usleep(100000);

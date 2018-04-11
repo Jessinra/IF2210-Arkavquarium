@@ -53,9 +53,6 @@ class Aquarium : public Object{
 		// draw on screen (GUI)
 		void draw();	
 		
-		// Method to remove object (calling destructor)
-	 	void remove();
-	 	
 		// Method to add guppy to tank 
 		// called by guppy.create() 
 		void add_guppy(Guppy& guppy);
@@ -117,6 +114,10 @@ class Aquarium : public Object{
 		// method to run by main
 		void buy_snail();
 		
+		double euclidean(double,double,Coin);
+		int inRadius(double,double);
+		void click_coin(double,double);
+
 	private:
 
 		// List of objects in aquarium	

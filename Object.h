@@ -15,8 +15,8 @@ class Object {
 									Method  
 		------------------------------------------------------------*/
 			
-		virtual void draw() = 0;
+		
 	
 };
 
-#endif // !OBJECT_Hsibuk 
+#endif // !OBJECT_H
