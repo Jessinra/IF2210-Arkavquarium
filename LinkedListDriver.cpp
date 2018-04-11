@@ -8,19 +8,23 @@ int main(int argc, char* args[]) {
     if (L.isEmpty()) {
         cout << "kosong" << endl;
     }
-    L.add(5);
+    int a = 5;
+    L.add(a);
     if (L.isEmpty()) {
         cout << "kosong" << endl;
     }
 
-    cout << L.find(5) << endl;
+
+    cout << L.find(a) << endl;
     cout << L.getNBelmt() << endl;
     L.printList();
-    L.add(10);
-    L.add(20);
-    L.remove(10);
+    int b = 10;
+    L.add(b);
+    int c = 20;
+    L.add(c);
+    L.remove(b);
     
-    cout << endl << L;
+    cout << endl << L << endl;
     cout << L.getNBelmt() << endl;
 
     return 0;

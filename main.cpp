@@ -21,7 +21,7 @@ int main(int argc, char* args[]) {
     init();
 
     bool running = true;
-    bool win = false;
+    int win = 0;
 
     // starting time 
     double prevtime = time_since_start();
@@ -84,7 +84,7 @@ int main(int argc, char* args[]) {
             running = false;
         }
         
-        cout<< "Money: "<< Aquarium::money<< endl;
+        cout << "Money: " << Aquarium::money << endl;
 
         // Command List
         // beli guppy   : G
@@ -130,6 +130,17 @@ int main(int argc, char* args[]) {
 
                     running = false;
                     break;
+                // save
+                case SDLK_q:
+
+                    aquarium.save();
+                    break;
+                // load
+                case SDLK_l:
+
+                    aquarium.load();
+                    break;
+                
             }
         }
 
@@ -178,13 +189,14 @@ int main(int argc, char* args[]) {
 
         // cek jumlah ikan u/ menang/kalah
         if ((aquarium.get_list_guppy().getNBelmt() == 0) && (aquarium.get_list_piranha().getNBelmt() == 0 ) && (Aquarium::money < GUPPY_PRICE)) {
-            running = false;
+            draw_image("img/gameover.png", SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+            update_screen();
         } 
 
         // cek telur untuk menang/kalah
         else if (Aquarium::egg == 3) {
-            win = true;
-            running = false;
+            draw_image("img/youwin.png", SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+            update_screen();
         }
 
         // game still continue

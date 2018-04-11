@@ -82,7 +82,8 @@ bool Guppy::operator!=(Guppy& g) {
 }
 
 void Guppy::draw() {
-	// draw guppy on screen
+	// draw guppy on screen 
+	
 	if (Fish::isHungry()) {
 			if (level_grow == 1) {
 				if (Moveable::get_dir() == "Left") {
@@ -188,8 +189,8 @@ void Guppy::move(double sec_since_last,LinkedList<Food> &F) {
 			set_dir("Right");
 		}
 		double a = atan2(F.get(idx).get_y()-get_y(), F.get(idx).get_x()-get_x());
-		set_x(get_x()+(double)(Fish::get_speed()*cos(a)*sec_since_last*3));
-		set_y(get_y()+(double)(Fish::get_speed()*sin(a)*sec_since_last*3));
+		set_x(get_x()+Fish::get_speed()*cos(a)*sec_since_last*3);
+		set_y(get_y()+Fish::get_speed()*sin(a)*sec_since_last*3);
 	}
 	else {
 		//random arahnya
@@ -226,15 +227,15 @@ void Guppy::move(double sec_since_last,LinkedList<Food> &F) {
 
 		//kalau sampai ujung
 		if (get_x() >= SCREEN_RIGHT || get_x() <= SCREEN_LEFT) {
-			Fish::set_x_move(Fish::get_x_move()*(-1.0));
+			Fish::set_x_move(Fish::get_x_move()*(-1));
 		}
 		if (get_y() <= SCREEN_TOP || get_y() >= SCREEN_BOTTOM) {
-			Fish::set_y_move(Fish::get_y_move()*(-1.0));
+			Fish::set_y_move(Fish::get_y_move()*(-1));
 		}
 
 		//pindahkan ikan
-		set_x(get_x()+(double)(Fish::get_speed()*sec_since_last*Fish::get_x_move()));
-		set_y(get_y()+(double)(Fish::get_speed()*sec_since_last*Fish::get_y_move()));
+		set_x(get_x()+Fish::get_speed()*sec_since_last*Fish::get_x_move());
+		set_y(get_y()+Fish::get_speed()*sec_since_last*Fish::get_y_move());
 	}
 }
 

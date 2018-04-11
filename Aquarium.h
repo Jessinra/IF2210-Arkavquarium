@@ -119,6 +119,22 @@ class Aquarium : public Object{
 		int inRadius(double,double);
 		int click_coin(double,double);
 
+		// save and load
+		void save() {
+			FILE *file = fopen("savefile", "wb");
+			if (file != NULL) {
+				fwrite(this, sizeof(Aquarium), 1, file);
+				fclose(file);
+			}
+		}
+		void load() {
+			FILE *file = fopen("savefile", "rb");
+			if (file != NULL) {
+				fread(this, sizeof(Aquarium), 1, file);
+				fclose(file);
+			}
+		}
+
 	private:
 
 		// List of objects in aquarium	

@@ -8,7 +8,9 @@ int Aquarium::money = 20000;
 
 Aquarium::Aquarium() {
 	Guppy *g = new Guppy();
+	Guppy *g1 = new Guppy();
 	list_guppy.add(*g);
+	list_guppy.add(*g1);
 	Siput *s = new Siput();
 	list_siput.add(*s);
 }
