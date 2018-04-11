@@ -14,18 +14,22 @@ int main(int argc, char* args[]) {
         cout << "kosong" << endl;
     }
 
-
     cout << L.find(a) << endl;
     cout << L.getNBelmt() << endl;
+    int i = 1;
+    cout << L.get(i) << endl;
+    
+    L.add(i);
     L.printList();
-    int b = 10;
+    int b = 2;
     L.add(b);
-    int c = 20;
-    L.add(c);
-    L.remove(b);
+    L.remove(i);
     
     cout << endl << L << endl;
     cout << L.getNBelmt() << endl;
+
+    LinkedList<int> L1 = L;
+    cout << L1 << endl;
 
     return 0;
 }

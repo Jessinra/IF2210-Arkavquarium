@@ -3,6 +3,8 @@
 #include "Guppy.h"
 #include "Piranha.h"
 #include "Siput.h"
+#include "Constant.h"
+#include "Save.h"
 #include <unistd.h>
 
 #include <math.h>
@@ -59,13 +61,8 @@ int main(int argc, char* args[]) {
 
     // create aquarium
     Aquarium aquarium;     
-    
-    // create cursor
-    double cx = SCREEN_WIDTH/2;
-    double cy = 20;
-
+    Save *s = new Save();
     int ct = 1;
-    cout << ct++ << endl;
 
     /*******        main loop            *******/
     while (running) {
@@ -73,9 +70,6 @@ int main(int argc, char* args[]) {
         double now = time_since_start();
         double sec_since_last = now - prevtime;
         prevtime = now;
-
-        cout << ct++ << "Money: "<< Aquarium::money << endl;
-        /********* cek input keyboard *********/
 
         // jangan lupa validasi uang & kurangin uang
         handle_input();
@@ -85,9 +79,9 @@ int main(int argc, char* args[]) {
         
         cout << "Money: " << Aquarium::money << endl;
 
+
         // Command List
         // beli guppy   : G
-        // beli makanan : F
         // beli piranha : P
         // beli telor   : E
         // beli siput   : S
@@ -98,12 +92,6 @@ int main(int argc, char* args[]) {
                 // buy guppy
                 case SDLK_g:
                     aquarium.buy_guppy();
-                    break;
-
-                // buy food
-                case SDLK_f:
-                    
-                    aquarium.buy_food();
                     break;
 
                 // buy piranha
@@ -131,44 +119,18 @@ int main(int argc, char* args[]) {
                     break;
                 // save
                 case SDLK_q:
-
+                    cout << "2" << endl;
                     aquarium.save();
+                    cout << "1" << endl;
+                    s->save(aquarium);
                     break;
                 // load
                 case SDLK_l:
 
                     aquarium.load();
+                    s->load(aquarium);
                     break;
                 
-            }
-        }
-
-        cout << ct++<< "Money: "<< Aquarium::money << endl; //3
-
-        // cursor dan gerakan cursor
-        for (auto key : get_pressed_keys()) {
-
-            switch (key) {
-
-                // move up
-                case SDLK_UP:
-                    cy -= speed * sec_since_last;
-                    break;
-
-                // move down
-                case SDLK_DOWN:
-                    cy += speed * sec_since_last;
-                    break;
-
-                // move left
-                case SDLK_LEFT:
-                    cx -= speed * sec_since_last;
-                    break;
-
-                // move right
-                case SDLK_RIGHT:
-                    cx += speed * sec_since_last;
-                    break;
             }
         }
 
@@ -183,7 +145,6 @@ int main(int argc, char* args[]) {
         }
 
 
-        cout << ct++<< "Money: "<< Aquarium::money << endl; //4
         /******* pengecekan *******/
 
         // cek jumlah ikan u/ menang/kalah
@@ -200,7 +161,6 @@ int main(int argc, char* args[]) {
 
         // game still continue
         else {
-            cout << ct++ << "Money: "<< Aquarium::money<< endl; //5
             // iterasi list guppy
             for (int i = 1; i <= aquarium.get_list_guppy().getNBelmt(); i++) {
                 cout << ct++ << endl; //6
@@ -317,9 +277,20 @@ int main(int argc, char* args[]) {
             
             draw_text("Money  " + money, 18, 10, 10, 0, 0, 0);
             draw_text("Egg    " + egg, 18, 10, 30, 0, 0, 0);
+            // Command List
+            // beli guppy   : G
+            // beli piranha : P
+            // beli telor   : E
+            // beli siput   : S
+            draw_text("Command List:    ", 15, 1150, 10, 0, 0, 0);
+            draw_text("G   Guppy    ", 15, 1150, 30, 0, 0, 0);
+            draw_text("P   Piranha    ", 15, 1150, 50, 0, 0, 0);
+            draw_text("E   Egg    ", 15, 1150, 70, 0, 0, 0);
+            draw_text("S   Snail    ", 15, 1150, 90, 0, 0, 0);
+            draw_text("X   Quit    ", 15, 1150, 110, 0, 0, 0);
             update_screen();
             
-            //usleep(100000);
+            //usleep(115000);
         }
     }
 
