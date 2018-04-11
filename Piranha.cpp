@@ -8,9 +8,6 @@ using namespace std;
 ------------------------------------------------------------*/	
 Piranha::Piranha() : Fish(PIRANHA_PRICE, PIRANHA_COIN_VAL) {
 	set_speed(PIRANHA_MOVEMENT_SPD);
-	//initialize position
-	set_x(SCREEN_RIGHT/2);
-	set_y(SCREEN_BOTTOM/2);
 }
 
 Piranha& Piranha::operator=(Piranha& g) {
@@ -77,6 +74,12 @@ void Piranha::move(double sec_since_last,LinkedList<Guppy>& G) {
 	if (Fish::isHungry() && G.getNBelmt() > 0) {
 		//mengejar food pakai tips
 		int idx = findGuppy(G);
+		if (G.get(idx).get_x() < get_x()) {
+			set_dir("Left");
+		}
+		else {
+			set_dir("Right");
+		}
 		double a = atan2(G.get(idx).get_y()-get_y(), G.get(idx).get_x()-get_x());
 		set_x(get_x()+Fish::get_speed()*cos(a)*sec_since_last);
 		set_y(get_y()+Fish::get_speed()*sin(a)*sec_since_last);
@@ -141,15 +144,16 @@ double Piranha::euclidean(Guppy &g) {
 int Piranha::inRadius(LinkedList<Guppy> &G) {
 
 	int idx = 1;
-	double radius = 150;
+	double radius = 70;
 	bool find = false;
-	
-	while (!find && idx<G.getNBelmt()) {
-		if (radius > euclidean(G.get(idx))) {
-			find = true;
-		}
-		else {
-			idx++;
+	if (G.getNBelmt() > 0) {
+		while (!find && idx<=G.getNBelmt()) {
+			if ((radius > abs(get_x()-G.get(idx).get_x())) && (radius > abs(get_y()-G.get(idx).get_y()))) {
+				find = true;
+			}
+			else {
+				idx++;
+			}
 		}
 	}
 	if (find) {
@@ -165,7 +169,7 @@ int Piranha::eat(LinkedList<Guppy> &G) {
 	int idx = inRadius(G);
 
 	// found
-	if (idx != -999) {
+	if (idx != -999 && Fish::isHungry()) {
 
 		// get eaten guppy lvl
 		int guppy_lv = G.get(idx).get_level();

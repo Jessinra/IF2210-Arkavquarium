@@ -16,10 +16,6 @@ Guppy::Guppy() : Fish(GUPPY_PRICE, GUPPY_COIN_VAL_01) {
 	set_timer(GUPPY_DROP_COIN_TIME);
 	set_level(1);
 
-	//initialize position
-	set_x(SCREEN_RIGHT/2);
-	set_y(SCREEN_BOTTOM/2);
-
 }
 
 Guppy& Guppy::operator=(Guppy& g) {
@@ -186,15 +182,17 @@ void Guppy::move(double sec_since_last,LinkedList<Food> &F) {
 	if (Fish::isHungry() && F.getNBelmt() > 0) {
 		//mengejar food pakai tips
 		int idx = findFood(F);
+		if (F.get(idx).get_x() < get_x()) {
+			set_dir("Left");
+		}
+		else {
+			set_dir("Right");
+		}
 		double a = atan2(F.get(idx).get_y()-get_y(), F.get(idx).get_x()-get_x());
-		set_x(get_x()+Fish::get_speed()*cos(a)*sec_since_last);
-		set_y(get_y()+Fish::get_speed()*sin(a)*sec_since_last);
+		set_x(get_x()+Fish::get_speed()*cos(a)*sec_since_last*3);
+		set_y(get_y()+Fish::get_speed()*sin(a)*sec_since_last*3);
 	}
 	else {
-		cout << "TEST WAKTU" << Fish::get_time_move() << endl;
-		cout << get_x() << "x nya brp" << get_x_move() << "x move" << get_y() << "y nya brp" << get_y_move() << "y move" << endl;
-		cout << "l" << SCREEN_LEFT << "r" << SCREEN_RIGHT << "t" << SCREEN_TOP << "b" << SCREEN_BOTTOM << endl;
-
 		//random arahnya
 		if (Fish::get_time_move() <= 0) {
 			Fish::set_time_move(FISH_MAX_TIMER);
@@ -258,13 +256,14 @@ int Guppy::inRadius(LinkedList<Food>& F) {
 	int idx = 1;
 	double radius = 70;
 	bool find = false;
-
-	while (!find && idx<F.getNBelmt()) {
-		if (radius > euclidean(F.get(idx))) {
-			find = true;
-		}
-		else {
-			idx++;
+	if (F.getNBelmt() > 0) {
+		while (!find && idx<=F.getNBelmt()) {
+			if ((radius > abs(get_x()-F.get(idx).get_x())) && (radius > abs(get_y()-F.get(idx).get_y()))) {
+				find = true;
+			}
+			else {
+				idx++;
+			}
 		}
 	}
 	if (find) {
@@ -283,7 +282,7 @@ void Guppy::eat(LinkedList<Food>& F) {
 	int idx = inRadius(F);
 
 	// if found
-	if (idx != -999) {
+	if (idx != -999 && Fish::isHungry()) {
 
 		// remove food from list 
 		F.remove(F.get(idx));

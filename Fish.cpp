@@ -12,13 +12,9 @@ int Fish::fish_count = 0;
 		------------------------------------------------------------*/
 	Fish::Fish(int price, int cvalue) {
 
-		// random position
-		double x = rand() % SCREEN_WIDTH;
-		double y = rand() % SCREEN_HEIGHT;
-
 		// set position
-		set_x(x);
-		set_y(y);
+		set_x(SCREEN_RIGHT/2);
+		set_y(SCREEN_BOTTOM/2);
 
 		Fish::fish_count++;
 
