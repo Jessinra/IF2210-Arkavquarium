@@ -41,32 +41,16 @@ void Siput::move(double sec_since_last, LinkedList<Coin>& C) {
 
         cout << "siput move " << Moveable::get_x() << "," << Moveable::get_y() << endl;
         x_coin = C.get(radius).get_x();
-        if (x_coin-get_x() > 0) {
-            set_x(get_x() + sec_since_last*get_speed());
-        } else {
-            set_x(get_x() - sec_since_last*get_speed());
+        if (abs(x_coin-get_x()) > 30) {
+            if (x_coin-get_x() > 0) {
+                set_x(get_x() + sec_since_last*get_speed());
+                set_dir("Right");
+            } else {
+                set_x(get_x() - sec_since_last*get_speed());
+                set_dir("Left");
+            }
         }
     }
-
-    /*
-    if (inRadius(C) != -999) {
-        cout << C.getNBelmt() << endl;
-        // get the x value of nearest coin
-        if (C.getNBelmt() > 0) {
-	    // idx = id coin yg menjadi target
-            int idx = inRadius(C);
-            cout << "siput move " << Moveable::get_x() << "," << Moveable::get_y() << endl;
-
-	    
-            // set siput x , to
-            double a = atan2(C.get(idx).Moveable::get_x() - Moveable::get_x(), C.get(idx).Moveable::get_y() - Moveable::get_y());
-	    
-	    Moveable::set_x(Moveable::get_x() - get_speed() * cos(a) * sec_since_last);			    
-            cout << "siput move " << Moveable::get_x() << "," << Moveable::get_y() << endl;
-	   
-        }
-    }
-    */
 }
 
 double Siput::euclidean(Coin c) {
@@ -89,28 +73,34 @@ int Siput::inRadius(LinkedList<Coin>& C) {
 
     if (find_coin(C) == true) {
 	// there's coin on screen_bottom
-	nearest = C.get(idx).get_x();
-	while (idx+1 < C.getNBelmt()) {
-	    if (C.get(idx).get_x() == SCREEN_BOTTOM) {
-		// kalo ada beberapa yg di bottom, cari yg terdekat
-		if (abs(C.get(idx).get_x() - get_x()) < nearest) {
-		    nearest = abs(C.get(idx).get_x() - get_x());
-		    radius = idx;
-		}
-	    } else {
-		idx++;
-	    }
-	}
+        for (idx==1; idx<=C.getNBelmt(); idx++) {
+            if (C.get(idx).get_y() == SCREEN_BOTTOM) {
+                break;
+            }
+        }
+        nearest = abs(C.get(idx).get_x() - get_x());
+        while (idx+1 < C.getNBelmt()) {
+            if (C.get(idx).get_y() == SCREEN_BOTTOM) {
+            // kalo ada beberapa yg di bottom, cari yg terdekat
+                if (abs(C.get(idx).get_x() - get_x()) < nearest) {
+                    nearest = abs(C.get(idx).get_x() - get_x());
+                    radius = idx;
+                } else {
+                    idx++;
+                } 
+            } else {
+                idx++;
+            }
+        }
     } else {
 	// no coin on screen_bottom
-	nearest = C.get(idx).get_y();
-	for (idx=2; idx < C.getNBelmt(); idx++) {
-	    // cari coin yg terdekat dengan tanah dg ngukur y
-	    if (C.get(idx).get_y() > nearest) {
-		radius = idx;
-	    }
-	}
-
+        nearest = C.get(idx).get_y();
+        for (idx=2; idx <= C.getNBelmt(); idx++) {
+            // cari coin yg terdekat dengan tanah dg ngukur y
+            if (C.get(idx).get_y() > nearest) {
+            radius = idx;
+            }
+        }
     }
     // return id coin yg di dalam radius
     return radius;
