@@ -25,9 +25,41 @@ int main(int argc, char* args[]) {
     // starting time 
     double prevtime = time_since_start();
 
+    bool status_main = true;
+    bool status_credit = false;
+    while (status_main) {
+        handle_input();
+        if (quit_pressed()) {
+            running = false;
+        }
+        clear_screen();
+        draw_image(FILE_main_menu, SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+        if (get_mouse_button_down(0) && (get_mouse_pos_x() >= (SCREEN_WIDTH/2)-110 && get_mouse_pos_x() <= (SCREEN_WIDTH/2)+110 && get_mouse_pos_y() <= (SCREEN_HEIGHT/2)+245 && get_mouse_pos_y() >= (SCREEN_HEIGHT/2)+170)) {
+            status_credit = true;
+            status_main = false;
+        }
+        else if (get_mouse_button_down(0) && (get_mouse_pos_x() >= (SCREEN_WIDTH/2)-110 && get_mouse_pos_x() <= (SCREEN_WIDTH/2)+110 && get_mouse_pos_y() <= (SCREEN_HEIGHT/2)+10 && get_mouse_pos_y() >= (SCREEN_HEIGHT/2)-65)) {
+            status_main = false;
+        }
+        update_screen();
+    }
+    while (status_credit) {
+        handle_input();
+        if (quit_pressed()) {
+            running = false;
+        }
+        clear_screen();
+        draw_image(FILE_credit, SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+        if (get_mouse_button_down(0)) {
+            status_credit = false;
+            status_main = true;
+        }
+        update_screen();
+    }
+
     // create aquarium
     Aquarium aquarium;     
-
+    
     // create cursor
     double cx = SCREEN_WIDTH/2;
     double cy = 20;

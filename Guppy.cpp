@@ -189,8 +189,8 @@ void Guppy::move(double sec_since_last,LinkedList<Food> &F) {
 			set_dir("Right");
 		}
 		double a = atan2(F.get(idx).get_y()-get_y(), F.get(idx).get_x()-get_x());
-		set_x(get_x()+Fish::get_speed()*cos(a)*sec_since_last*3);
-		set_y(get_y()+Fish::get_speed()*sin(a)*sec_since_last*3);
+		set_x(get_x()+(double)(Fish::get_speed()*cos(a)*sec_since_last*1.5));
+		set_y(get_y()+(double)(Fish::get_speed()*sin(a)*sec_since_last*1.5));
 	}
 	else {
 		//random arahnya
@@ -254,7 +254,7 @@ int Guppy::inRadius(LinkedList<Food>& F) {
 	//nyari ikan nya udah diradius itu blm
 
 	int idx = 1;
-	double radius = 70;
+	double radius = 50;
 	bool find = false;
 	if (F.getNBelmt() > 0) {
 		while (!find && idx<=F.getNBelmt()) {
