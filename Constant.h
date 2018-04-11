@@ -78,6 +78,10 @@ const string FILE_aquarium = "img/Aquarium2.jpg";
 
 const string FILE_main_menu = "img/main.jpg";
 
+const string FILE_win = "img/youwin.png";
+
+const string FILE_lose = "img/gameover.png";
+
 const string FILE_credit = "img/credit.jpeg";
 
 #endif

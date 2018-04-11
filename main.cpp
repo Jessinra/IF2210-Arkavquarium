@@ -188,13 +188,13 @@ int main(int argc, char* args[]) {
 
         // cek jumlah ikan u/ menang/kalah
         if ((aquarium.get_list_guppy().getNBelmt() == 0) && (aquarium.get_list_piranha().getNBelmt() == 0 ) && (Aquarium::money < GUPPY_PRICE)) {
-            draw_image("img/gameover.png", SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+            draw_image(FILE_lose, SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
             update_screen();
         } 
 
         // cek telur untuk menang/kalah
         else if (Aquarium::egg == 3) {
-            draw_image("img/youwin.png", SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+            draw_image(FILE_win, SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
             update_screen();
         }
 
