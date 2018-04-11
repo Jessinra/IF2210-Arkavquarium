@@ -43,7 +43,7 @@ int main(int argc, char* args[]) {
         double sec_since_last = now - prevtime;
         prevtime = now;
 
-        cout << ct++ << endl;
+        cout << ct++ << "Money: "<< Aquarium::money << endl;
         /********* cek input keyboard *********/
 
         // jangan lupa validasi uang & kurangin uang
@@ -52,7 +52,7 @@ int main(int argc, char* args[]) {
             running = false;
         }
         
-        cout << " mouse pos " << get_mouse_pos_x() << "," <<  get_mouse_pos_y() << endl;
+        cout<< "Money: "<< Aquarium::money<< endl;
 
         // Command List
         // beli guppy   : G
@@ -101,7 +101,7 @@ int main(int argc, char* args[]) {
             }
         }
 
-        cout << ct++ << endl; //3
+        cout << ct++<< "Money: "<< Aquarium::money << endl; //3
 
         // cursor dan gerakan cursor
         for (auto key : get_pressed_keys()) {
@@ -130,13 +130,18 @@ int main(int argc, char* args[]) {
             }
         }
 
-        // beli makan
+        // on left mouse click
         if (get_mouse_button_down(0)) {
-            aquarium.buy_food(get_mouse_pos_x());
+            int val = aquarium.click_coin(get_mouse_pos_x(),get_mouse_pos_y()); // cek coin
+            if (val != 0) {
+                Aquarium::money += val;
+            } else {
+                aquarium.buy_food(get_mouse_pos_x());       // beli makan
+            }
         }
 
 
-        cout << ct++ << endl; //4
+        cout << ct++<< "Money: "<< Aquarium::money << endl; //4
         /******* pengecekan *******/
 
         // cek jumlah ikan u/ menang/kalah
@@ -152,7 +157,7 @@ int main(int argc, char* args[]) {
 
         // game still continue
         else {
-            cout << ct++ << endl; //5
+            cout << ct++ << "Money: "<< Aquarium::money<< endl; //5
             // iterasi list guppy
             for (int i = 1; i <= aquarium.get_list_guppy().getNBelmt(); i++) {
                 cout << ct++ << endl; //6
@@ -165,10 +170,10 @@ int main(int argc, char* args[]) {
                     i--;
 
                 } else {
-                    cout << "?" << endl;
+                    cout << "?" << "Money: "<< Aquarium::money<< endl;
                     // move fish
                     current_guppy.move(sec_since_last, aquarium.get_list_food());
-                    cout << "a" << endl;
+                    cout << "a" << "Money: "<< Aquarium::money<< endl;
                     // check to drop coin & reduce timer
                     if(current_guppy.produce_coin()){
 
@@ -176,10 +181,10 @@ int main(int argc, char* args[]) {
                         aquarium.add_coin(*c);
 
                     }
-                    cout << "makan" << endl;
+                    cout << "makan" << "Money: "<< Aquarium::money<< endl;
                     // cek untuk makan
                     current_guppy.eat(aquarium.get_list_food());
-                    cout << "hunger" << endl;
+                    cout << "hunger"<< "Money: "<< Aquarium::money << endl;
                     // ngurangin hunger
                     current_guppy.makeHungry();
                     
@@ -218,7 +223,7 @@ int main(int argc, char* args[]) {
 
                 }
             }
-            cout << ct++ << endl; //8
+            cout << ct++<< "Money: "<< Aquarium::money<< endl; //8
             // iterasi list coin
             for (int i = 1; i <= aquarium.get_list_coin().getNBelmt(); i++) {
 
@@ -228,7 +233,7 @@ int main(int argc, char* args[]) {
                 current_coin.move(sec_since_last);
 
             }
-            cout << ct++ << endl; //9
+            cout << ct++<< "Money: "<< Aquarium::money << endl; //9
             // iterasi list makanan
             for (int i = 1; i <= aquarium.get_list_food().getNBelmt(); i++) {
 
@@ -244,7 +249,7 @@ int main(int argc, char* args[]) {
                 current_food.move(sec_since_last);
             }
 
-            cout << ct++ << endl; //10
+            cout << ct++ << "Money: "<< Aquarium::money<< endl; //10
 
             // iterasi list siput
             for (int i = 1; i <= aquarium.get_list_siput().getNBelmt(); i++) {
@@ -254,12 +259,13 @@ int main(int argc, char* args[]) {
                 // move siput
                 current_siput.move(sec_since_last,aquarium.get_list_coin());
                 // get coin
+                cout << "Money: "<< Aquarium::money << endl;
                 Aquarium::money += current_siput.take_coin(aquarium.get_list_coin());
                 // current_siput.take_coin();
 
             }
 
-            cout << ct++ << endl;//11
+            cout << ct++ << "Money: "<< Aquarium::money<< endl;//11
             // draw every faking thing (fish, coin, food, piranha, siput, money, egg count ,command ) 
             clear_screen();
             aquarium.draw();

@@ -146,6 +146,8 @@ int Siput::take_coin(LinkedList<Coin>& C) {
         } else {
             return 0;
         }
+    } else {
+        return 0;
     }
 }
 

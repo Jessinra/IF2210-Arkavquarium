@@ -114,9 +114,10 @@ class Aquarium : public Object{
 		// method to run by main
 		void buy_snail();
 		
+		// method for clicking coin 
 		double euclidean(double,double,Coin);
 		int inRadius(double,double);
-		void click_coin(double,double);
+		int click_coin(double,double);
 
 	private:
 

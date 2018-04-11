@@ -278,14 +278,18 @@ int Aquarium::inRadius(double x, double y) {
 }
 
 
-void Aquarium::click_coin(double x, double y) {
+int Aquarium::click_coin(double x, double y) {
     //find coin in radius
     if (get_list_coin().getNBelmt() > 0) {
         int idx = inRadius(x,y);
         if (get_list_coin().get(idx).get_x() >= x - 30 && get_list_coin().get(idx).get_x() <= x + 30 && get_list_coin().get(idx).get_y() >= y-30 && get_list_coin().get(idx).get_y() <= y+30) {
             int value = get_list_coin().get(idx).get_value();
             get_list_coin().remove(get_list_coin().get(idx));
-            Aquarium::money += value;
-        }
-    }
+            return value;
+        } else {
+			return 0;
+		}
+    } else {
+		return 0;
+	}
 }
