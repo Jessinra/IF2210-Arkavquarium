@@ -262,7 +262,6 @@ int Aquarium::inRadius(double x, double y) {
     int idx = 1;
     int nearest;
     double radius = 1;
-    bool find = false;
 
 	nearest = get_list_coin().get(idx).get_x();
 	while (idx+1 < get_list_coin().getNBelmt()) {

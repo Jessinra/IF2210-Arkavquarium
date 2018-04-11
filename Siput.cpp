@@ -69,11 +69,10 @@ int Siput::inRadius(LinkedList<Coin>& C) {
     int idx = 1;
     int nearest;
     double radius = 1;
-    bool find = false;
 
     if (find_coin(C) == true) {
 	// there's coin on screen_bottom
-        for (idx==1; idx<=C.getNBelmt(); idx++) {
+        for (idx = 1; idx<=C.getNBelmt(); idx++) {
             if (C.get(idx).get_y() == SCREEN_BOTTOM) {
                 break;
             }

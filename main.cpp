@@ -21,7 +21,6 @@ int main(int argc, char* args[]) {
     init();
 
     bool running = true;
-    int win = 0;
 
     // starting time 
     double prevtime = time_since_start();
