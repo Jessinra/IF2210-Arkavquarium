@@ -45,7 +45,6 @@ void Aquarium::draw(){
 	draw_image(FILE_aquarium, SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
 	
 	for (int i = 1; i <= list_guppy.getNBelmt(); i++){
-		
 		list_guppy.get(i).draw();
 	}
 
@@ -144,6 +143,7 @@ void Aquarium::buy_guppy(){
 	if (Aquarium::money >= GUPPY_PRICE){
 
 		Guppy *g = new Guppy();
+		cout << g -> get_x() << " " << g -> get_y() << "******** posisi GUPPY" << endl;
 		add_guppy(*g);
 
 		Aquarium::money -= GUPPY_PRICE;
@@ -163,6 +163,7 @@ void Aquarium::buy_piranha(){
 	if (Aquarium::money >= PIRANHA_PRICE){
 
 		Piranha *p = new Piranha();
+		cout << p -> get_x() << " " << p -> get_y() << "******** posisi PIRANHA" << endl;
 		add_piranha(*p);
 
 		Aquarium::money -= PIRANHA_PRICE;

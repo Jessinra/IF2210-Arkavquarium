@@ -15,6 +15,7 @@ Guppy::Guppy() : Fish(GUPPY_PRICE, GUPPY_COIN_VAL_01) {
 	set_number_eat(0);
 	set_timer(GUPPY_DROP_COIN_TIME);
 	set_level(1);
+	cout << get_x() << "POSISI X" << get_y() << "POSISI Y" << endl;
 
 }
 
@@ -188,6 +189,7 @@ void Guppy::move(double sec_since_last,LinkedList<Food> &F) {
 		else {
 			set_dir("Right");
 		}
+
 		double a = atan2(F.get(idx).get_y()-get_y(), F.get(idx).get_x()-get_x());
 		set_x(get_x()+(double)(Fish::get_speed()*cos(a)*sec_since_last*1.5));
 		set_y(get_y()+(double)(Fish::get_speed()*sin(a)*sec_since_last*1.5));

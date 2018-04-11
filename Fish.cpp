@@ -13,8 +13,10 @@ int Fish::fish_count = 0;
 	Fish::Fish(int price, int cvalue) {
 
 		// set position
-		set_x(SCREEN_RIGHT/2);
-		set_y(SCREEN_BOTTOM/2);
+		int random_x = rand() % 200;
+		int random_y = rand() % 200;
+		set_x(SCREEN_RIGHT/2+random_x);
+		set_y(SCREEN_BOTTOM/2+random_y);
 
 		Fish::fish_count++;
 
@@ -25,7 +27,8 @@ int Fish::fish_count = 0;
 		set_hungry(false);
 		Moveable::set_dir("Right");
 		time_move = FISH_MAX_TIMER;
-		//cout << time_move << "waktu time_move" << endl;
+		x_move = 1;
+		y_move = 1;
 	}
 
 		/*------------------------------------------------------------
