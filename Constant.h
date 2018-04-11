@@ -76,5 +76,8 @@ const string FILE_food = "img/food.png";
 
 const string FILE_aquarium = "img/Aquarium2.jpg";
 
+const string FILE_main_menu = "img/main.jpg";
+
+const string FILE_credit = "img/credit.jpeg";
 
 #endif
