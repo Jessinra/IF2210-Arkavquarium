@@ -1,0 +1,32 @@
+guppy:
+    drop coin                   main
+    guppy tumbuh                guppy
+    jenis move guppy            guppy
+    remove makanan              guppy
+    kondisi lapar kenyang       guppy
+    guppy mati ga nemu makanan  main
+    ngurangin hunger            main
+    ngurangin c                 main
+    reset C & M                 guppy
+
+makanan ikan:
+    di remove                   guppy
+
+koin(?????????????):
+    di remove                   siput
+    tambah uang                 ???
+        siput nambah uang bisa ga ya
+
+piranha:
+    remove guppy                piranha
+    mati                        main
+    drop coin                   ???
+        kalau di main bingung ambil x & y nya
+
+siput:
+    remove coin                 siput
+    tambah uang                 ???
+
+uang (di aquarium)
+telur (di aquarium)
+cek menang kalah (main)
