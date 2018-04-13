@@ -40,9 +40,6 @@ const int SCREEN_BOTTOM = SCREEN_HEIGHT - 80;
 const int SCREEN_LEFT = 80;
 const int SCREEN_RIGHT = SCREEN_WIDTH - 80;
 
-
-
-
 /**** IMAGE ****/
 
 const string FILE_guppy_01_left = "img/guppy_01.png";
